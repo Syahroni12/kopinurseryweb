@@ -39,9 +39,8 @@
       /* Agar background mengisi seluruh tinggi viewport */
       display: flex;
       /* Untuk membuat card login berada di tengah secara vertikal */
-    }
-
-    
+      align-items: center;
+    } 
   </style>
   <!-- /END GA -->
 </head>
@@ -92,9 +91,6 @@
                   </div>
                 </form>
               </div>
-            </div>
-            <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="#">Create One</a>
             </div>
           </div>
         </div>
