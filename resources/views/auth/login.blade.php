@@ -39,9 +39,8 @@
       /* Agar background mengisi seluruh tinggi viewport */
       display: flex;
       /* Untuk membuat card login berada di tengah secara vertikal */
-    }
-
-    
+      align-items: center;
+    } 
   </style>
   <!-- /END GA -->
 </head>
