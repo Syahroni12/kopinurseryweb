@@ -46,9 +46,10 @@
             </div>
             <div class="col-lg-6 col-md-4 col-sm-12">
                 <div class="card card-statistic-2 d-flex flex-column" style="height: 250px; ">
-                    <div class="card-stats-title text-center" style="padding-top: 15px;">
+                    <div class="card-stats-title text-center position-relative" style="padding-top: 15px;">
+                        <button class="btn btn-secondary position-absolute" style="left: 15px; border-radius:10px">Lihat Detail</button>
                         <img src="{{asset('assets/img/logo.png')}}" alt="Logo" style="width: 50px; height: 50px;">
-                        <h4>Sensor 1</h4>
+                        <h4>Sensor 2</h4>
                     </div>
                     <div class="row">
                         <div class="col-md-6" style="padding-left: 80px;">
@@ -88,7 +89,7 @@
                 <div class="card card-statistic-2 d-flex flex-column" style="height: 250px; ">
                     <div class="card-stats-title text-center" style="padding-top: 15px;">
                         <img src="{{asset('assets/img/logo.png')}}" alt="Logo" style="width: 50px; height: 50px;">
-                        <h4>Sensor 1</h4>
+                        <h4>Sensor 3</h4>
                     </div>
                     <div class="row">
                         <div class="col-md-6" style="padding-left: 80px;">
@@ -128,7 +129,7 @@
                 <div class="card card-statistic-2 d-flex flex-column" style="height: 250px; ">
                     <div class="card-stats-title text-center" style="padding-top: 15px;">
                         <img src="{{asset('assets/img/logo.png')}}" alt="Logo" style="width: 50px; height: 50px;">
-                        <h4>Sensor 1</h4>
+                        <h4>Sensor 4</h4>
                     </div>
                     <div class="row">
                         <div class="col-md-6" style="padding-left: 80px;">
