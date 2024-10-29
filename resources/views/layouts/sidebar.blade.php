@@ -9,8 +9,8 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="dropdown active">
-                <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+            <li class="dropdown {{ Route::is('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Manajement</li>
             <li class="dropdown">
@@ -19,8 +19,8 @@
             <li class="dropdown">
                 <a href="#" class="nav-link"><i class="fas fa-id-badge"></i><span>Data Pegawai</span></a>
             </li>
-            <li class="dropdown">
-                <a href="#" class="nav-link"><i class="fas fa-share-alt"></i><span>Blog</span></a>
+            <li class="dropdown {{ Route::is('blog') ? 'active' : '' }}">
+                <a href="{{ route('blog') }}" class="nav-link"><i class="fas fa-share-alt"></i><span>Blog</span></a>
             </li>
         </ul>
     </aside>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,8 @@ Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('gu
 Route::post('/loginact', [AuthController::class, 'login'])->name('loginact')->middleware('guest');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
 
 // Route::get('/dashboard', function () {
 //     return view('page.dashboard.index');
