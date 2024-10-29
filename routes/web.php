@@ -20,7 +20,3 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('page.dashboard.index');
 });
-
-Route::get('/blog-post', function () {
-    return view('page.blog.blog-post');
-});

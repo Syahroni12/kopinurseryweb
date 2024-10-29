@@ -95,10 +95,6 @@
   <!-- Template JS File -->
   <script src="assets/js/scripts.js"></script>
   <script src="assets/js/custom.js"></script>
-
-  <!-- Page Specific JS File -->
-  <script src="assets/js/page/features-post-create.js"></script>
-  <script src="assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js"></script>
 </body>
 
 </html>
