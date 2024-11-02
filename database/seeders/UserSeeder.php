@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
                 'no_telfon' => '081234567890',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
-                'created_at' => now(),
+                'created_at' => now(), 
                 'updated_at' => now(),
             ],
             [

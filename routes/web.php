@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middle
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
+Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
 
 // Route::get('/dashboard', function () {
 //     return view('page.dashboard.index');
