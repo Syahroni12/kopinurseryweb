@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/getdataalat/{id}', [ApiGetDataalatController::class, 'index']);
 Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
 Route::post('/login', [ApiGetDataalatController::class, 'apiLogin']);
+Route::get('/logout', [ApiGetDataalatController::class, 'logout']);

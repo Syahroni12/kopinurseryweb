@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alat;
 use App\Models\Monicontrolling;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ApiGetDataalatController extends Controller
@@ -118,5 +119,12 @@ class ApiGetDataalatController extends Controller
                 'message' => $th->getMessage(),
             ], 500);
         }
+    }
+
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return response()->json(['message' => 'Logout successful'], 200);
     }
 }
