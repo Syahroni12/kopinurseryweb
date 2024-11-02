@@ -21,28 +21,6 @@
         <p class="section-lead">
           Kamu bisa mengatur blog, merubah dan bahkan menghapus blog.
         </p>
-        <div class="row">
-          <div class="col-12">
-            <div class="card mb-0">
-              <div class="card-body">
-                <!-- <ul class="nav nav-pills">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#">All <span class="badge badge-white">5</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Draft <span class="badge badge-primary">1</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Pending <span class="badge badge-primary">1</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Trash <span class="badge badge-primary">0</span></a>
-                  </li>
-                </ul> -->
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row mt-4">
           <div class="col-12">
             <div class="card">
@@ -74,7 +52,7 @@
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <tr>
-                      <th class="text-center pt-2">
+                      <th class="pt-2">
                         <div class="custom-checkbox custom-checkbox-table custom-control">
                           <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
                           <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
