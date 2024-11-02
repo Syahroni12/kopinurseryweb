@@ -9,6 +9,7 @@ class Monicontrolling extends Model
 {
     use HasFactory;
     protected $table = 'monicontrollings';
+    protected $guarded = ['id'];
 
 
     public function alat()
