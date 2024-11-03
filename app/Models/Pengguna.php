@@ -15,4 +15,7 @@ class Pengguna extends Model
     public function user(){
         return $this->belongsTo(User::class,'id_user','id');
     }
+    public function Blog(){
+        return $this->hasMany(Blog::class,'id_pengguna','id');
+    }
 }

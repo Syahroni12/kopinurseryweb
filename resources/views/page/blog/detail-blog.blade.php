@@ -27,8 +27,7 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <form action="{{ route('storeblog') }}" method="post" enctype="multipart/form-data">
-                                    @csrf
+
                                     <div class="card">
                                         <div class="card-header">
                                             <h4>Tulis Blog Anda</h4>
@@ -38,25 +37,22 @@
                                                 <label
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
                                                 <div class="col-sm-12 col-md-7">
-                                                    <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                                                    <input type="text" class="form-control" name="title" value="{{ $blog->title }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
                                                 <label
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
-                                                <div class="col-sm-12 col-md-7">
-                                                    <select class="form-control selectric" name="category">
-                                                        <option value="Tech">Tech</option>
-                                                        <option value="News">News</option>
-                                                        <option value="Agriculture">Agriculture</option>
-                                                    </select>
+
+                                                 <div class="col-sm-12 col-md-7">
+                                                    <input type="text" class="form-control"  value="{{ $blog->category }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
                                                 <label
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content</label>
                                                 <div class="col-sm-12 col-md-7">
-                                                    <textarea class="summernote-simple" name="content"></textarea>
+                                                    <textarea class="summernote-simple" name="content" readonly>{{ $blog->content }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
@@ -64,8 +60,11 @@
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <div id="image-preview" class="image-preview">
-                                                        <label for="image-upload" id="image-label">Choose File</label>
-                                                        <input type="file" name="image" id="image-upload" accept="image/*"  />
+                                                        @if ($blog->image)
+                                                            <img src="{{ asset('thumbnail/' . $blog->image) }}" alt="Current Thumbnail" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+                                                        @endif
+                                                        {{-- <label for="image-upload" id="image-label">Choose File</label>
+                                                        <input type="file" name="image" id="image-upload" accept="image/*" /> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +89,7 @@
                                                 <label
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                                 <div class="col-sm-12 col-md-7">
-                                                    <button class="btn btn-primary" type="submit">Create Post</button>
+                                                    {{-- <button class="btn btn-primary" type="submit">Create Post</button> --}}
                                                 </div>
                                             </div>
                                         </div>
