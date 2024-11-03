@@ -26,6 +26,7 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
 Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('/profileact', [ProfileController::class, 'simpan'])->name('simpanprofile')->middleware('auth');
 Route::get('/edit-blog/{id}', [BlogController::class, 'edit'])->name('edit-blog');
 Route::get('/detail-blog/{id}', [BlogController::class, 'detail'])->name('detail-blog');
 Route::get('/delete_blog/{id}', [BlogController::class, 'delete'])->name('delete_blog');
