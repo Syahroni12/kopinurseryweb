@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
 Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 // Route::get('/dashboard', function () {
 //     return view('page.dashboard.index');
