@@ -27,8 +27,10 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <form action="{{ route('storeblog') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('updateblog', $blog->id) }}" method="post" enctype="multipart/form-data">
+
                                     @csrf
+                                    @method('PUT')
                                     <div class="card">
                                         <div class="card-header">
                                             <h4>Tulis Blog Anda</h4>
@@ -38,7 +40,7 @@
                                                 <label
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
                                                 <div class="col-sm-12 col-md-7">
-                                                    <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                                                    <input type="text" class="form-control" name="title" value="{{ $blog->title }}">
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
@@ -46,9 +48,9 @@
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <select class="form-control selectric" name="category">
-                                                        <option value="Tech">Tech</option>
-                                                        <option value="News">News</option>
-                                                        <option value="Agriculture">Agriculture</option>
+                                                        <option value="Tech"{{ $blog->category == 'Tech' ? 'selected' : '' }}>Tech</option>
+                                                        <option value="News" {{ $blog->category == 'News' ? 'selected' : ''  }}>News</option>
+                                                        <option value="Agriculture" {{ $blog->category == 'Agriculture' ? 'selected' : ''  }}>Agriculture</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -56,7 +58,7 @@
                                                 <label
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content</label>
                                                 <div class="col-sm-12 col-md-7">
-                                                    <textarea class="summernote-simple" name="content"></textarea>
+                                                    <textarea class="summernote-simple" name="content">{{ $blog->content }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
@@ -64,8 +66,11 @@
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <div id="image-preview" class="image-preview">
+                                                        @if ($blog->image)
+                                                            <img src="{{ asset('thumbnail/' . $blog->image) }}" alt="Current Thumbnail" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+                                                        @endif
                                                         <label for="image-upload" id="image-label">Choose File</label>
-                                                        <input type="file" name="image" id="image-upload" accept="image/*"  />
+                                                        <input type="file" name="image" id="image-upload" accept="image/*" />
                                                     </div>
                                                 </div>
                                             </div>
