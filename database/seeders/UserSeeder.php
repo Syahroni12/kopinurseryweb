@@ -16,10 +16,10 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'no_telfon' => '081234567890',
+                'no_telfon' => '085536539053',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
-                'created_at' => now(), 
+                'created_at' => now(),
                 'updated_at' => now(),
             ],
             [

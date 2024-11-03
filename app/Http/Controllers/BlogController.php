@@ -105,6 +105,10 @@ class BlogController extends Controller
         $blog->category = $request->category;
         $blog->content = $request->content;
         if ($request->hasFile('image')) {
+            $file = public_path() . '/thumbnail/' . $blog->image;
+            if (file_exists($file)) {
+                unlink($file);
+            }
             $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension(); //mengambil ekstensi file
 
             $request->file('image')->move(public_path() . '/thumbnail', $fileName); //mengupload file ke public/produk
