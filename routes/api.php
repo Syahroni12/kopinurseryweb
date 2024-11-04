@@ -24,7 +24,6 @@ Route::get('/getdataalat/{id}', [ApiGetDataalatController::class, 'index']);
 Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
 Route::get('/logout', [ApiGetDataalatController::class, 'logout']);
 
-Route::prefix('api')->group(function () {
-    Route::post('/login', [AuthController::class, 'gaslogin'])->name('api.login');
-});
+Route::post('/login', [AuthController::class, 'gaslogin']);
+
 
