@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('alats', function (Blueprint $table) {
             $table->id();
-            $table->string('alat');
-            $table->string('deskripsi_alat');
-            $table->boolean('status');
+            $table->string('alat')->nullable(false);
+            $table->string('deskripsi_alat')->nullable()->default('Rawwwwwrrrrrrrr');
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

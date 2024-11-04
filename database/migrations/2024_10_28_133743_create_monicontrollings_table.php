@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('monicontrollings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_alat')->length(3);
-            $table->float('nilai_humidity', 5, 2);
-            $table->float('nilai_temperature', 5, 2);
+            $table->float('nilai_humidity', 5, 2)->nullable(false);
+            $table->float('nilai_temperature', 5, 2)->nullable(false);
             $table->foreign('id_alat')->references('id')->on('alats')->onDelete('cascade');
             $table->timestamps();
         });

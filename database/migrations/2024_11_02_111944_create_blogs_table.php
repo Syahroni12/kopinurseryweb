@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->enum('category', ['Tech', 'News', 'Agriculture']);
-            $table->text('content');
+            $table->string('title')->nullable(false);
+            $table->enum('category', ['Tech', 'News', 'Agriculture'])->default('Tech');
+            $table->text('content')->nullable()->default('Unknown!!!');
             $table->string('image')->nullable();
-
-            // $table->string('tags');
             $table->unsignedBigInteger('id_pengguna');
             $table->foreign('id_pengguna')->references('id')->on('penggunas')->onDelete('cascade');
             $table->timestamps();
