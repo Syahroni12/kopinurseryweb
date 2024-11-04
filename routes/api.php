@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiGetDataalatController;
@@ -21,5 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/getdataalat/{id}', [ApiGetDataalatController::class, 'index']);
 Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
-Route::post('/login', [ApiGetDataalatController::class, 'apiLogin']);
 Route::get('/logout', [ApiGetDataalatController::class, 'logout']);
+
+Route::prefix('api')->group(function () {
+    Route::post('/login', [AuthController::class, 'gaslogin'])->name('api.login');
+});
+

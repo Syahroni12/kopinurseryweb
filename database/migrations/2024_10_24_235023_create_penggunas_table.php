@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('penggunas', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->nullable(false);
-            $table->string('alamat')->nullable()->default('Unknown!!!');
-            $table->text('deskripsi')->nullable()->default('Unknown!!!');
+            $table->string('alamat')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->string('foto')->default('avatar.png');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');

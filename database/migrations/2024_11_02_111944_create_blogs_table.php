@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable(false);
             $table->enum('category', ['Tech', 'News', 'Agriculture'])->default('Tech');
-            $table->text('content')->nullable()->default('Unknown!!!');
+            $table->text('content')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('id_pengguna');
             $table->foreign('id_pengguna')->references('id')->on('penggunas')->onDelete('cascade');

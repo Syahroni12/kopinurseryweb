@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KaryawanController;
@@ -34,7 +34,3 @@ Route::get('/delete_blog/{id}', [BlogController::class, 'delete'])->name('delete
 Route::put('/update-blog/{id}', [BlogController::class, 'update'])->name('updateblog');
 Route::post('/tambah_blog', [BlogController::class, 'store'])->name('storeblog')->middleware('auth');
 Route::get('/rekam-data', [RekamdataController::class, 'index'])->name('rekam-data');
-
-// Route::get('/dashboard', function () {
-//     return view('page.dashboard.index');
-// });
