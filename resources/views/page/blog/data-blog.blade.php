@@ -8,9 +8,9 @@
       <div class="section-header">
         <img src="{{ asset('assets/img/blog-icon.png') }}" alt="Icon" style="width: 40px; height: auto; margin-right: 10px; vertical-align: middle;">
         <h1 style="display: inline;">Blog</h1>
-        <div class="section-header-button">
+        <!-- <div class="section-header-button">
           <a href="{{ route('create-blog') }}" class="btn btn-primary">Tambah</a>
-        </div>
+        </div> -->
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
           <div class="breadcrumb-item"><a href="#">Blog</a></div>
