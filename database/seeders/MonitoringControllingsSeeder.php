@@ -2,19 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Monicontrolling;
+use Illuminate\Contracts\Queue\Monitor;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
-class UserSeeder extends Seeder
+class MonitoringControllingsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::factory(100)->create();
+        Monicontrolling::factory(100)->create();
     }
 }

@@ -23,16 +23,11 @@ class AuthController extends Controller
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('API Token')->plainTextToken;
-                $user->update([
-                    'status' => 'online',
-                    'time_login' => now(),
-                    'last_login' => now(),
-                ]);
                 return response()->json([
                     'access_token' => $token,
                     'token_type' => 'bearer',
                     'expires_at' => now()->addMinutes(60)->toDateTimeString(),
-                    'user_online' => $user,
+                    'user' => $user,
                     'message' => 'Login Berhasil',
                 ], 200);
             } else {
