@@ -41,7 +41,6 @@ class AuthController extends Controller
         }
 
         try {
-
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
                 Alert::success('Success', 'Login Berhasil di lakukan')->flash();
@@ -51,22 +50,20 @@ class AuthController extends Controller
                 return back();
             }
         } catch (\Throwable $th) {
-            //throw $th;
-            alert()->error('Gagal', $th->getMessage());
-            return back();
-            //     alert()->error('Gagal',"nis/nip atau password salah");
-            // return back();
         }
     }
 
-
-
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        Alert::success('Success', 'Logout Berhasil di lakukan')->flash();
-        return redirect()->route('login');
+        if ($request->user()->currentAccessToken()) {
+            $request->user()->currentAccessToken()->delete();
+            return response()->json([
+                'message' => 'Logout berhasil dilakukan'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'User sudah logout atau token tidak ditemukan'
+            ], 401);
+        }
     }
 }
