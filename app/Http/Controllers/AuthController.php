@@ -31,6 +31,7 @@ class AuthController extends Controller
             "password" => $request->password
         ];
 
+
         if (auth()->attempt($credentials)) {
 
             Alert::success('Success', 'Login Berhasil di lakukan');
