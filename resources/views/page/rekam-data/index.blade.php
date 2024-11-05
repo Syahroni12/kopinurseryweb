@@ -5,7 +5,8 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Rekam Data</h1>
+      <img src="{{ asset('assets/img/rekam-data-icon.png') }}" alt="Icon" style="width: 40px; height: auto; margin-right: 10px; vertical-align: middle;">
+      <h1 style="display: inline;">Rekam Data</h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
         <div class="breadcrumb-item">Rekam Data</div>
@@ -54,7 +55,7 @@
             </div>
 
             <!-- button cetak -->
-            <button class="btn btn-primary" style="border-radius: 15px; height: 38px;">
+            <button class="btn btn-primary" style="border-radius: 12px; height: 38px;">
               <i class="fas fa-print"></i> Cetak
             </button>
           </div>
