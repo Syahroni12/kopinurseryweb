@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('penggunas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable(false);
+            $table->string('nama')->nullable();
             $table->string('alamat')->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('foto')->default('avatar.png');

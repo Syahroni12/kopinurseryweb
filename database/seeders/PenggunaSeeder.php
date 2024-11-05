@@ -22,14 +22,6 @@ class PenggunaSeeder extends Seeder
                 'updated_at' => now(),
 
             ],
-            [
-                // 'no_telfon' => '081234567891',
-                'nama' => "sumanto",
-                "alamat" => "ciledug",
-                "id_user" => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
         ]);
     }
 }
