@@ -18,7 +18,7 @@
           <div class="card">
             <div class="card-body">
               <div class="float-left">
-                <a href="#" class="btn btn-primary">Add New</a>
+                <a href="{{ route('create-karyawan') }}" class="btn btn-primary">Add New</a>
               </div>
               <div class="float-right">
                 <form>
