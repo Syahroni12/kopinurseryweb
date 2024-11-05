@@ -1,59 +1,16 @@
 "use strict";
 
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    datasets: [{
-      label: 'Statistics',
-      data: [460, 458, 330, 502, 430, 610, 488],
-      borderWidth: 2,
-      backgroundColor: '#6777ef',
-      borderColor: '#6777ef',
-      borderWidth: 2.5,
-      pointBackgroundColor: '#ffffff',
-      pointRadius: 4
-    }]
-  },
-  options: {
-    legend: {
-      display: false
-    },
-    scales: {
-      yAxes: [{
-        gridLines: {
-          drawBorder: false,
-          color: '#f2f2f2',
-        },
-        ticks: {
-          beginAtZero: true,
-          stepSize: 150
-        }
-      }],
-      xAxes: [{
-        ticks: {
-          display: false
-        },
-        gridLines: {
-          display: false
-        }
-      }]
-    },
-  }
-});
-
-var ctx = document.getElementById("myChart2").getContext('2d');
+var ctx = document.getElementById("humidityChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     datasets: [{
       label: 'Statistics',
-      data: [460, 458, 330, 502, 430, 610, 488],
+      data: [50, 67, 90, 100, 78, 98, 79],
       borderWidth: 2,
-      backgroundColor: '#6777ef',
-      borderColor: '#6777ef',
+      backgroundColor: '#BFFA01',
+      borderColor: '#BFFA01',
       borderWidth: 2.5,
       pointBackgroundColor: '#ffffff',
       pointRadius: 4
@@ -67,95 +24,75 @@ var myChart = new Chart(ctx, {
       yAxes: [{
         gridLines: {
           drawBorder: false,
-          color: '#f2f2f2',
+          color: '#cccccc', // Warna gridlines
+          lineWidth: 1.5,   // Ketebalan gridlines
+          borderDash: [5, 5] // Membuat garis putus-putus dengan pola 5 pixel
         },
         ticks: {
           beginAtZero: true,
-          stepSize: 150
+          stepSize: 100
         }
       }],
       xAxes: [{
-        ticks: {
-          display: false
-        },
         gridLines: {
-          display: false
+          color: '#e0e0e0', // Warna gridlines di sumbu x
+          lineWidth: 1.5,   // Ketebalan gridlines di sumbu x
+          borderDash: [5, 5], // Membuat garis putus-putus
+          display: true
+        },
+        ticks: {
+          display: true
         }
       }]
-    },
+    }
   }
 });
 
-var ctx = document.getElementById("myChart3").getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    datasets: [{
-      data: [
-        80,
-        50,
-        40,
-        30,
-        20,
-      ],
-      backgroundColor: [
-        '#191d21',
-        '#63ed7a',
-        '#ffa426',
-        '#fc544b',
-        '#6777ef',
-      ],
-      label: 'Dataset 1'
-    }],
-    labels: [
-      'Black',
-      'Green',
-      'Yellow',
-      'Red',
-      'Blue'
-    ],
-  },
-  options: {
-    responsive: true,
-    legend: {
-      position: 'bottom',
-    },
-  }
-});
 
-var ctx = document.getElementById("myChart4").getContext('2d');
+var ctx = document.getElementById("temperatureChart").getContext('2d');
 var myChart = new Chart(ctx, {
-  type: 'pie',
+  type: 'bar',
   data: {
+    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     datasets: [{
-      data: [
-        80,
-        50,
-        40,
-        30,
-        100,
-      ],
-      backgroundColor: [
-        '#191d21',
-        '#63ed7a',
-        '#ffa426',
-        '#fc544b',
-        '#6777ef',
-      ],
-      label: 'Dataset 1'
-    }],
-    labels: [
-      'Black',
-      'Green',
-      'Yellow',
-      'Red',
-      'Blue'
-    ],
+      label: 'Statistics',
+      data: [30, 34, 28, 25, 32, 31, 21],
+      borderWidth: 2,
+      backgroundColor: '#BFFA01',
+      borderColor: '#BFFA01',
+      borderWidth: 2.5,
+      pointBackgroundColor: '#ffffff',
+      pointRadius: 4
+    }]
   },
   options: {
-    responsive: true,
     legend: {
-      position: 'bottom',
+      display: false
     },
+    scales: {
+      yAxes: [{
+        gridLines: {
+          drawBorder: false,
+          color: '#cccccc', // Warna gridlines
+          lineWidth: 1.5,   // Ketebalan gridlines
+          borderDash: [5, 5] // Membuat garis putus-putus dengan pola 5 pixel
+        },
+        ticks: {
+          beginAtZero: true,
+          stepSize: 100
+        }
+      }],
+      xAxes: [{
+        gridLines: {
+          color: '#e0e0e0', // Warna gridlines di sumbu x
+          lineWidth: 1.5,   // Ketebalan gridlines di sumbu x
+          borderDash: [5, 5], // Membuat garis putus-putus
+          display: true
+        },
+        ticks: {
+          display: true
+        }
+      }]
+    }
   }
 });
