@@ -95,8 +95,8 @@
                     @endforeach
                   </table>
                 </div>
-                <div class="float-right">
-
+                <div class="d-flex justify-content-center">
+                    {{ $blog->links() }}
                 </div>
               </div>
             </div>
