@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Monicontrolling;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +17,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PenggunaSeeder::class,
             AlatSeeder::class,
-            MonitoringControllingsSeeder::class,
+            MoniControllingSeeder::class,
             BlogSeeder::class
         ]);
     }

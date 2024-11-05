@@ -6,9 +6,9 @@ use App\Models\Alat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Monicontrolling>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\MoniControlling>
  */
-class MonitoringControllingsFactory extends Factory
+class MoniControllingFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +19,8 @@ class MonitoringControllingsFactory extends Factory
     {
         return [
             'id_alat' => Alat::inRandomOrder()->first()->id,
-            'nilai_humidity' => fake()->float(2, 0, 100),
-            'nilai_temperature' => fake()->float(2, 0, 100),
+            'nilai_humidity' => fake()->randomFloat(2, 0, 100), // Menggunakan randomFloat
+            'nilai_temperature' => fake()->randomFloat(2, 0, 100), // Menggunakan randomFloat
             'created_at' => now(),
             'updated_at' => now(),
         ];

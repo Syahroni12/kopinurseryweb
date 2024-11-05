@@ -3,11 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Monicontrolling;
-use Illuminate\Contracts\Queue\Monitor;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MonitoringControllingsSeeder extends Seeder
+class MoniControllingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
