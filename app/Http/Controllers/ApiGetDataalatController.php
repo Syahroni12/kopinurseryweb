@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alat;
 use App\Models\Monicontrolling;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -47,22 +48,27 @@ class ApiGetDataalatController extends Controller
     public function senddata(Request $request)
     {
         // Validasi input
-        $validatedData = $request->validate([
-            'id_alat' => 'required|string',
-            'temperature' => 'required|numeric',
-            'humidity' => 'required|numeric',
-        ]);
+        // $validatedData = $request->validate([
+        //     'id_alat' => 'required|string',
+        //     'temperature' => 'required|numeric',
+        //     'humidity' => 'required|numeric',
+        // ]);
 
         // Simpan data monitoring
-        $monitoring = new Monicontrolling();
+        // $monitoring = new Monicontrolling();
 
         // Menangkap data dari request yang sudah divalidasi
-        $monitoring->id_alat = $validatedData['id_alat'];
-        $monitoring->nilai_temperature = $validatedData['temperature'];
-        $monitoring->nilai_humidity = $validatedData['humidity'];
-
+        $date = Carbon::now();
         try {
-            $monitoring->save();
+        $data =   Monicontrolling::create([
+            'id_alat' => $request->id_alat,
+            'nilai_temperature' => $request->temperature,
+            'nilai_humidity' => $request->humidity,
+            'created_at' => $date,
+        ]);
+
+
+            // $monitoring->save();
             // Kembalikan respons
             return response()->json([
                 'message' => 'Monitoring data saved successfully',
