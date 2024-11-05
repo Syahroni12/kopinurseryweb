@@ -6,7 +6,8 @@
   <div class="main-content">
     <section class="section">
       <div class="section-header">
-        <h1>Blog</h1>
+        <img src="{{ asset('assets/img/blog-icon.png') }}" alt="Icon" style="width: 40px; height: auto; margin-right: 10px; vertical-align: middle;">
+        <h1 style="display: inline;">Blog</h1>
         <div class="section-header-button">
           <a href="{{ route('create-blog') }}" class="btn btn-primary">Tambah</a>
         </div>
@@ -17,40 +18,28 @@
         </div>
       </div>
       <div class="section-body">
-        <h2 class="section-title">Blog</h2>
-        <p class="section-lead">
-          Kamu bisa mengatur blog, merubah dan bahkan menghapus blog.
-        </p>
         <div class="row mt-4">
           <div class="col-12">
             <div class="card">
-              <!-- <div class="card-header">
-                <h4>Semua Blog</h4>
-              </div> -->
               <div class="card-body">
                 <div class="float-left">
-                  <!-- <select class="form-control selectric">
-                    <option>Action For Selected</option>
-                    <option>Move to Draft</option>
-                    <option>Move to Pending</option>
-                    <option>Delete Pemanently</option>
-                  </select> -->
+                  <a href="{{ route('create-blog') }}" class="btn btn-primary">Tambah</a>
                 </div>
                 <div class="float-right">
-                    <form action="" method="GET">
-                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="cari" value="{{ request()->cari }}">
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="submit">
-                            <i class="fas fa-search"></i>
-                          </button>
-                          <button class="btn btn-secondary" type="button" onclick="window.location.href='/blog'">
-                            reresh
-                          </button>
-                        </div>
+                  <form action="" method="GET">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search" name="cari" value="{{ request()->cari }}">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                          <i class="fas fa-search"></i>
+                        </button>
+                        <button class="btn btn-secondary" type="button" onclick="window.location.href='/blog'">
+                          reresh
+                        </button>
                       </div>
-                    </form>
-                  </div>
+                    </div>
+                  </form>
+                </div>
 
 
                 <div class="clearfix mb-3"></div>
@@ -120,34 +109,32 @@
 
 
 <script>
-
   function deleteData(id) {
 
     event.preventDefault();
-            Swal.fire({
-                title: 'Hapus?',
-                text: 'Apakah anda yakin ingin hapus data?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Hapus',
-                cancelButtonText: 'Batal',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // console.log(id);
-                    window.location.href = `/delete_blog/`+id;
-                    // window.location.href = "/selesaikan/".itemId "";
-                    // Swal.fire({
-                    //     title: "Deleted!",
-                    //     text: "Your file has been deleted.",
-                    //     icon: "success"
-                    // });
-                }
-            })
+    Swal.fire({
+      title: 'Hapus?',
+      text: 'Apakah anda yakin ingin hapus data?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Batal',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // console.log(id);
+        window.location.href = `/delete_blog/` + id;
+        // window.location.href = "/selesaikan/".itemId "";
+        // Swal.fire({
+        //     title: "Deleted!",
+        //     text: "Your file has been deleted.",
+        //     icon: "success"
+        // });
+      }
+    })
   }
-
-    </script>
+</script>
 
 
 @endsection

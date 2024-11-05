@@ -274,6 +274,7 @@
     <script src="{{ asset('assets/js/page/features-posts.js') }}"></script>
     <script src="{{ asset('assets/js/page/features-post-create.js') }}"></script>
     <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
+    <script src="{{ asset('assets/js/page/modules-chartjs.js') }}"></script>
 
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
@@ -305,6 +306,17 @@
             })
         }
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.daterange-cus').daterangepicker({
+                locale: {
+                    format: 'DD-MM-YYYY'
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

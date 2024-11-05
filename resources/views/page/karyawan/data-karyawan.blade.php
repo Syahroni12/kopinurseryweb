@@ -6,7 +6,8 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1> Data Karyawan</h1>
+      <img src="{{ asset('assets/img/karyawan-icon.png') }}" alt="Icon" style="width: 40px; height: auto; margin-right: 10px; vertical-align: middle;">
+      <h1 style="display: inline;">Data Karyawan</h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
         <div class="breadcrumb-item"><a href="#">Data Karyawan</a></div>
