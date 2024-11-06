@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/loginact', [AuthController::class, 'login'])->name('loginact')->middleware('guest');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/logout', [AuthController::class, 'logoutt'])->name('logout')->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
