@@ -8,9 +8,9 @@
       <div class="section-header">
         <img src="{{ asset('assets/img/blog-icon.png') }}" alt="Icon" style="width: 40px; height: auto; margin-right: 10px; vertical-align: middle;">
         <h1 style="display: inline;">Blog</h1>
-        <div class="section-header-button">
+        <!-- <div class="section-header-button">
           <a href="{{ route('create-blog') }}" class="btn btn-primary">Tambah</a>
-        </div>
+        </div> -->
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
           <div class="breadcrumb-item"><a href="#">Blog</a></div>
@@ -57,6 +57,7 @@
                       <th>Category</th>
                       <th>Author</th>
                       <th>Created At</th>
+                      <th>Action</th>
                       {{-- <th>Status</th> --}}
                     </tr>
                     @foreach ($blog as $item)
@@ -70,13 +71,13 @@
                         </div>
                       </td> --}}
                       <td>{{ $item->title }}
-                        <div class="table-links">
+                        <!-- <div class="table-links">
                           <a href="{{ route('detail-blog', $item->id) }}">View</a>
                           <div class="bullet"></div>
                           <a href="{{ route('edit-blog', $item->id) }}">Edit</a>
                           <div class="bullet"></div>
                           <div class="text-danger" onclick="deleteData({{ $item->id }})">Trash</div>
-                        </div>
+                        </div> -->
                       </td>
                       <td>
                         {{ $item->category }}
@@ -91,12 +92,23 @@
                       {{-- <td>
                         <div class="badge badge-primary">Published</div>
                       </td> --}}
+                      <td>
+                        <a href="{{ route('detail-blog', $item->id) }}" class="btn btn-primary">
+                          <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="{{ route('edit-blog', $item->id) }}" class="btn btn-warning">
+                          <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <button class="btn btn-danger" onclick="deleteData({{ $item->id }})">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
                     </tr>
                     @endforeach
                   </table>
                 </div>
-                <div class="float-right">
-
+                <div class="d-flex justify-content-center">
+                  {{ $blog->links() }}
                 </div>
               </div>
             </div>

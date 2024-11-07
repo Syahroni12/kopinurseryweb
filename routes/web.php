@@ -21,12 +21,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/loginact', [AuthController::class, 'login'])->name('loginact')->middleware('guest');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/logout', [AuthController::class, 'logoutt'])->name('logout')->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
 Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
 Route::get('/create-karyawan', [KaryawanController::class, 'create'])->name('create-karyawan');
+Route::get('/hapus_karyawan/{id}', [KaryawanController::class, 'hapus'])->name('hapus_karyawan');
+Route::get('/edit_karyawan/{id}', [KaryawanController::class, 'edit'])->name('edit_karyawan');
+Route::put('/update_karyawan/{id}', [KaryawanController::class, 'update'])->name('update_karyawan');
+Route::post('/store-karyawan', [KaryawanController::class, 'store'])->name('store-karyawan');
+
+
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/profileact', [ProfileController::class, 'simpan'])->name('simpanprofile')->middleware('auth');
 Route::get('/edit-blog/{id}', [BlogController::class, 'edit'])->name('edit-blog');

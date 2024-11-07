@@ -18,7 +18,7 @@ class BlogController extends Controller
             ->where('title', 'like', "%" . $cari . "%")
             ->orWhere('content', 'like', "%" . $cari . "%")
             ->orWhere('category', 'like', "%" . $cari . "%")
-            ->get();
+            ->paginate(20);
 
         return view('page.blog.data-blog', compact('blog'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alat;
 use App\Models\Monicontrolling;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -44,22 +45,27 @@ class ApiGetDataalatController extends Controller
     public function senddata(Request $request)
     {
         // Validasi input
-        $validatedData = $request->validate([
-            'id_alat' => 'required|string',
-            'temperature' => 'required|numeric',
-            'humidity' => 'required|numeric',
-        ]);
+        // $validatedData = $request->validate([
+        //     'id_alat' => 'required|string',
+        //     'temperature' => 'required|numeric',
+        //     'humidity' => 'required|numeric',
+        // ]);
 
         // Simpan data monitoring
-        $monitoring = new Monicontrolling();
+        // $monitoring = new Monicontrolling();
 
         // Menangkap data dari request yang sudah divalidasi
-        $monitoring->id_alat = $validatedData['id_alat'];
-        $monitoring->nilai_temperature = $validatedData['temperature'];
-        $monitoring->nilai_humidity = $validatedData['humidity'];
-
+        $date = Carbon::now();
         try {
-            $monitoring->save();
+            $data =   Monicontrolling::create([
+                'id_alat' => $request->id_alat,
+                'nilai_temperature' => $request->temperature,
+                'nilai_humidity' => $request->humidity,
+                'created_at' => $date,
+            ]);
+
+
+            // $monitoring->save();
             // Kembalikan respons
             return response()->json([
                 'message' => 'Monitoring data saved successfully',
@@ -123,5 +129,26 @@ class ApiGetDataalatController extends Controller
     {
         Auth::logout();
         return response()->json(['message' => 'Logout successful'], 200);
+    }
+
+    public function aturpompa() {
+        $alat=Alat::find(5);
+        if ($alat->status == 1) {
+
+            $alat->status = 0;
+            $alat->save();
+        } else {
+            // # code...
+            $alat->status = 1;
+            $alat->save();
+        }
+        if ($alat->status == 1) {
+
+            return response()->json(['Data pompa berhasil di hidupkan', 'pompa' => $alat->status]);
+        }else {
+            // return redirect()->back()->with('success', ' Pompa dinonaktifkan!');
+            return response()->json(['Data pompa berhasil di matikan', 'pompa' => $alat->status]);
+            # code...
+        }
     }
 }

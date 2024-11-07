@@ -31,6 +31,7 @@ class AuthController extends Controller
             "password" => $request->password
         ];
 
+
         if (auth()->attempt($credentials)) {
 
             Alert::success('Success', 'Login Berhasil di lakukan');
@@ -43,7 +44,7 @@ class AuthController extends Controller
         try {
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-                Alert::success('Success', 'Login Berhasil di lakukan')->flash();
+                Alert::success('Success', 'Login Berhasil di lakukan');
                 return redirect()->intended('dashboard');
             } else {
                 Alert::error('Gagal', "email atau password salah");
@@ -65,5 +66,17 @@ class AuthController extends Controller
                 'message' => 'User sudah logout atau token tidak ditemukan'
             ], 401);
         }
+    }
+
+    public function logoutt(Request $request)
+    {
+        //fungsi logout
+
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        Alert::success('Success', 'Logout Berhasil di lakukan');
+        return redirect()->route('login');
     }
 }
