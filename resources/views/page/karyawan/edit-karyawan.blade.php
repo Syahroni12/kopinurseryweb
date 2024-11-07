@@ -21,7 +21,8 @@
         <div class="card-header">
           <!-- <h4>Input Text</h4> -->
         </div>
-        <form action="{{ route('store-karyawan') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('update_karyawan', $pengguna->id) }}" method="post" enctype="multipart/form-data">
+          @method('PUT')
           @csrf
         <div class="card-body">
           <div class="form-group">
