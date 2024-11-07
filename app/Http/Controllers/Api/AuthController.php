@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pengguna;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -39,5 +40,19 @@ class AuthController extends Controller
         } else {
             return response()->json(['message' => 'Username pengguna tidak ditemukan.'], 401);
         }
+    }
+    public function checkToken(Request $request)
+    {
+        if (Auth::check()) {
+            return response()->json([
+                'message' => 'Token valid',
+                'user' => Auth::user()
+            ]);
+        }
+
+        // Jika tidak valid, mengembalikan respons gagal
+        return response()->json([
+            'message' => 'Token tidak valid atau telah kedaluwarsa'
+        ], 401);
     }
 }

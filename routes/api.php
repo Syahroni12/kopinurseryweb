@@ -22,4 +22,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/getdataalat/{id}', [ApiGetDataalatController::class, 'index']);
     Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
     Route::post('/logout', [AuthControllerController::class, 'logout']);
+    Route::post('/check-token', [AuthController::class, 'checkToken']);
 });

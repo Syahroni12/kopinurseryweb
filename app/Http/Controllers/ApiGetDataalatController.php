@@ -11,38 +11,35 @@ use Illuminate\Support\Facades\Validator;
 class ApiGetDataalatController extends Controller
 {
 
-    public function index(Request $request)
+    public function index($id)
     {
-        // Ambil semua alat
-        // $alat = Alat::all();
+        try {
+            $data = Monicontrolling::where('id_alat', $id)
+                ->latest()
+                ->first();
 
-        // Siapkan array untuk menyimpan data monitoring
-        // $data = [];
-        $dataa = Monicontrolling::with('alat')->where('id_alat', $request->id_alat)->latest()->first();
-        // $data[] = [
-        //     // "alat" => $dataa->alat->alat,
-        //     "temperature" => $dataa->nilai_temperature,
-        //     "humidity" => $dataa->nilai_humidity
-        // ];
+            if (!$data) {
+                return response()->json([
+                    'message' => 'Data not found'
+                ], 404);
+            }
+            $responseData = [
+                'id' => $data->id,
+                'id_alat' => $data->id_alat,
+                'nilai_humidity' => $data->nilai_humidity,
+                'nilai_temperature' => $data->nilai_temperature,
+                'created_at' => $data->created_at,
+                'updated_at' => $data->updated_at
+            ];
 
-        // Ambil data terbaru untuk setiap alat dengan menggunakan a join query
-        // foreach ($alat as $alatItem) {
-        //     $latestMonitoring = Monicontrolling::where('id_alat', $alatItem->id)
-        //         ->latest()
-        //         ->first();
-
-        //     if ($latestMonitoring) {
-        //         $data[] = [
-        //             'alat' => $alatItem['alat'],
-        //             'latest_monitoring' => $latestMonitoring,
-        //         ];
-        //     }
-        // }
-
-        // Kembalikan data sebagai JSON
-        return response()->json($dataa);
+            return response()->json($responseData, 200, [], JSON_NUMERIC_CHECK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Internal server error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
-
 
     public function senddata(Request $request)
     {
