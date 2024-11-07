@@ -12,7 +12,16 @@ class KaryawanController extends Controller
 {
     public function index()
     {
-        $data = Pengguna::with('user')->paginate(20);
+        $data = Pengguna::with('user')
+        ->where('nama', 'like', '%' . request('cari') . '%')
+        ->orWhere('alamat', 'like', '%' . request('cari') . '%')
+        ->orWhereHas('user', function($query) {
+            $query->where('no_telfon', 'like', '%' . request('cari') . '%')
+                  ->orWhere('role', 'like', '%' . request('cari') . '%')
+                  ->orWhere('email', 'like', '%' . request('cari') . '%');
+        })
+        ->paginate(20);
+
         return view('page.karyawan.data-karyawan', compact('data'));
     }
     public function store(Request $request)
@@ -50,6 +59,7 @@ class KaryawanController extends Controller
             $user->save();
             $pengguna = new Pengguna();
             $pengguna->id_user = $user->id;
+            $pengguna->nama = $request->nama;
             $pengguna->alamat = $request->alamat;
             // $pengguna->role = $request->level;
             $pengguna->save();
@@ -62,4 +72,29 @@ class KaryawanController extends Controller
     {
         return view('page.karyawan.create-karyawan');
     }
+    public function edit($id)
+    {
+        $pengguna=Pengguna::with('user')->find($id);
+        // return view('page.karyawan.create-karyawan');
+        return view('page.karyawan.edit-karyawan', compact('pengguna'));
+    }
+
+    public function hapus($id){
+        $pengguna = Pengguna::find($id);
+        $user = User::find($pengguna->id_user);
+
+        $file = public_path() . '/foto_profil/' . $pengguna->foto;
+        if (file_exists($file)) {
+            unlink($file);
+        }
+        $pengguna->delete();
+        $user->delete();
+        Alert::success('Berhasil', 'Data Berhasil di Hapus');
+        return redirect()->route('karyawan');
+
+
+    }
+
+
+
 }

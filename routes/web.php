@@ -27,6 +27,8 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
 Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
 Route::get('/create-karyawan', [KaryawanController::class, 'create'])->name('create-karyawan');
+Route::get('/hapus_karyawan/{id}', [KaryawanController::class, 'hapus'])->name('hapus_karyawan');
+Route::get('/edit_karyawan/{id}', [KaryawanController::class, 'edit'])->name('edit_karyawan');
 Route::post('/store-karyawan', [KaryawanController::class, 'store'])->name('store-karyawan');
 
 

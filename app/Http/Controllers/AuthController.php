@@ -44,7 +44,7 @@ class AuthController extends Controller
         try {
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-                Alert::success('Success', 'Login Berhasil di lakukan')->flash();
+                Alert::success('Success', 'Login Berhasil di lakukan');
                 return redirect()->intended('dashboard');
             } else {
                 Alert::error('Gagal', "email atau password salah");
