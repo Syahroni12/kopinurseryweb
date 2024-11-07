@@ -60,12 +60,12 @@ class ApiGetDataalatController extends Controller
         // Menangkap data dari request yang sudah divalidasi
         $date = Carbon::now();
         try {
-        $data =   Monicontrolling::create([
-            'id_alat' => $request->id_alat,
-            'nilai_temperature' => $request->temperature,
-            'nilai_humidity' => $request->humidity,
-            'created_at' => $date,
-        ]);
+            $data =   Monicontrolling::create([
+                'id_alat' => $request->id_alat,
+                'nilai_temperature' => $request->temperature,
+                'nilai_humidity' => $request->humidity,
+                'created_at' => $date,
+            ]);
 
 
             // $monitoring->save();
@@ -132,5 +132,26 @@ class ApiGetDataalatController extends Controller
     {
         Auth::logout();
         return response()->json(['message' => 'Logout successful'], 200);
+    }
+
+    public function aturpompa() {
+        $alat=Alat::find(5);
+        if ($alat->status == 1) {
+
+            $alat->status = 0;
+            $alat->save();
+        } else {
+            // # code...
+            $alat->status = 1;
+            $alat->save();
+        }
+        if ($alat->status == 1) {
+
+            return response()->json(['Data pompa berhasil di hidupkan', 'pompa' => $alat->status]);
+        }else {
+            // return redirect()->back()->with('success', ' Pompa dinonaktifkan!');
+            return response()->json(['Data pompa berhasil di matikan', 'pompa' => $alat->status]);
+            # code...
+        }
     }
 }
