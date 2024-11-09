@@ -62,6 +62,7 @@ class ApiGetDataalatController extends Controller
                 'nilai_temperature' => $request->temperature,
                 'nilai_humidity' => $request->humidity,
                 'created_at' => $date,
+                'updated_at' => $date,
             ]);
 
 
