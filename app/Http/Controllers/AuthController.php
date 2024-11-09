@@ -79,4 +79,17 @@ class AuthController extends Controller
         Alert::success('Success', 'Logout Berhasil di lakukan');
         return redirect()->route('login');
     }
+
+    public function forgotpass(){
+        return view('auth.forgot-password');
+    }
+
+    public function otppass() {
+        return view('auth.otp-password');
+    }
+
+    public function resetpass() {
+        return view('auth.reset-password');
+    }
 }
+  

@@ -88,7 +88,7 @@
                                     </div>
 
                                     <div class="form-group float-right">
-                                        <a href="#" class="text-small text-success">Forgot Password</a>
+                                        <a href="{{ route('forgot-password') }}" class="text-small text-success">Forgot Password</a>
                                     </div>
 
                                     <div class="form-group">
