@@ -22,6 +22,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/getdataalat/{id}', [ApiGetDataalatController::class, 'index']);
     Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
     Route::post('/logout', [AuthControllerController::class, 'logout']);
+    Route::post('/check-token', [AuthController::class, 'checkToken']);
+    Route::post('/aturpompa', [ApiGetDataalatController::class, 'aturpompa']);
 });
+
 Route::post('/senddataa', [ApiGetDataalatController::class, 'senddata']);
-Route::get('/aturpompa', [ApiGetDataalatController::class, 'aturpompa']);
+Route::get('/aturpompaa', [ApiGetDataalatController::class, 'aturpompa']);

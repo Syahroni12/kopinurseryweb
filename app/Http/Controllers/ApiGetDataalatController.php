@@ -12,38 +12,35 @@ use Illuminate\Support\Facades\Validator;
 class ApiGetDataalatController extends Controller
 {
 
-    public function index(Request $request)
+    public function index($id)
     {
-        // Ambil semua alat
-        // $alat = Alat::all();
+        try {
+            $data = Monicontrolling::where('id_alat', $id)
+                ->latest()
+                ->first();
 
-        // Siapkan array untuk menyimpan data monitoring
-        // $data = [];
-        $dataa = Monicontrolling::with('alat')->where('id_alat', $request->id_alat)->latest()->first();
-        // $data[] = [
-        //     // "alat" => $dataa->alat->alat,
-        //     "temperature" => $dataa->nilai_temperature,
-        //     "humidity" => $dataa->nilai_humidity
-        // ];
+            if (!$data) {
+                return response()->json([
+                    'message' => 'Data not found'
+                ], 404);
+            }
+            $responseData = [
+                'id' => $data->id,
+                'id_alat' => $data->id_alat,
+                'nilai_humidity' => $data->nilai_humidity,
+                'nilai_temperature' => $data->nilai_temperature,
+                'created_at' => $data->created_at,
+                'updated_at' => $data->updated_at
+            ];
 
-        // Ambil data terbaru untuk setiap alat dengan menggunakan a join query
-        // foreach ($alat as $alatItem) {
-        //     $latestMonitoring = Monicontrolling::where('id_alat', $alatItem->id)
-        //         ->latest()
-        //         ->first();
-
-        //     if ($latestMonitoring) {
-        //         $data[] = [
-        //             'alat' => $alatItem['alat'],
-        //             'latest_monitoring' => $latestMonitoring,
-        //         ];
-        //     }
-        // }
-
-        // Kembalikan data sebagai JSON
-        return response()->json($dataa);
+            return response()->json($responseData, 200, [], JSON_NUMERIC_CHECK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Internal server error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
-
 
     public function senddata(Request $request)
     {
@@ -134,24 +131,27 @@ class ApiGetDataalatController extends Controller
         return response()->json(['message' => 'Logout successful'], 200);
     }
 
-    public function aturpompa() {
-        $alat=Alat::find(5);
-        if ($alat->status == 1) {
+    public function aturpompa()
+    {
+        // Ambil status dari alat pertama sebagai referensi (misalnya alat dengan ID terkecil)
+        $firstAlat = Alat::first();
 
-            $alat->status = 0;
-            $alat->save();
-        } else {
-            // # code...
-            $alat->status = 1;
-            $alat->save();
+        if (!$firstAlat) {
+            return response()->json(['error' => 'Tidak ada alat yang ditemukan'], 404);
         }
-        if ($alat->status == 1) {
 
-            return response()->json(['Data pompa berhasil di hidupkan', 'pompa' => $alat->status]);
-        }else {
-            // return redirect()->back()->with('success', ' Pompa dinonaktifkan!');
-            return response()->json(['Data pompa berhasil di matikan', 'pompa' => $alat->status]);
-            # code...
-        }
+        // Toggle status: jika 1 jadi 0, jika 0 jadi 1
+        $newStatus = !$firstAlat->status;
+
+        // Update semua alat dengan status yang baru
+        Alat::query()->update(['status' => $newStatus]);
+
+        // Pesan respon berdasarkan status terbaru
+        $message = $newStatus ? 'Semua pompa berhasil dihidupkan' : 'Semua pompa berhasil dimatikan';
+
+        return response()->json([
+            'message' => $message,
+            'pompa_status' => $newStatus
+        ]);
     }
 }

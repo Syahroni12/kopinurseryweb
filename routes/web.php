@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/forgot-password', [AuthController::class, 'forgotpass'])->name('forgot-password')->middleware('guest');
+Route::get('/otp-password', [AuthController::class, 'otppass'])->name('otp-password')->middleware('guest');
+Route::get('/reset-password', [AuthController::class, 'resetpass'])->name('reset-password')->middleware('guest');
 Route::post('/loginact', [AuthController::class, 'login'])->name('loginact')->middleware('guest');
 Route::get('/logout', [AuthController::class, 'logoutt'])->name('logout')->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
