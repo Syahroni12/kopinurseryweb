@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
     Route::post('/logout', [AuthControllerController::class, 'logout']);
 });
+Route::post('/senddataa', [ApiGetDataalatController::class, 'senddata']);
 Route::get('/aturpompa', [ApiGetDataalatController::class, 'aturpompa']);
