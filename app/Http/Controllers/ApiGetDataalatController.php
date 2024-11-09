@@ -131,24 +131,27 @@ class ApiGetDataalatController extends Controller
         return response()->json(['message' => 'Logout successful'], 200);
     }
 
-    public function aturpompa() {
-        $alat=Alat::find(5);
-        if ($alat->status == 1) {
+    public function aturpompa()
+    {
+        // Ambil status dari alat pertama sebagai referensi (misalnya alat dengan ID terkecil)
+        $firstAlat = Alat::first();
 
-            $alat->status = 0;
-            $alat->save();
-        } else {
-            // # code...
-            $alat->status = 1;
-            $alat->save();
+        if (!$firstAlat) {
+            return response()->json(['error' => 'Tidak ada alat yang ditemukan'], 404);
         }
-        if ($alat->status == 1) {
 
-            return response()->json(['Data pompa berhasil di hidupkan', 'pompa' => $alat->status]);
-        }else {
-            // return redirect()->back()->with('success', ' Pompa dinonaktifkan!');
-            return response()->json(['Data pompa berhasil di matikan', 'pompa' => $alat->status]);
-            # code...
-        }
+        // Toggle status: jika 1 jadi 0, jika 0 jadi 1
+        $newStatus = !$firstAlat->status;
+
+        // Update semua alat dengan status yang baru
+        Alat::query()->update(['status' => $newStatus]);
+
+        // Pesan respon berdasarkan status terbaru
+        $message = $newStatus ? 'Semua pompa berhasil dihidupkan' : 'Semua pompa berhasil dimatikan';
+
+        return response()->json([
+            'message' => $message,
+            'pompa_status' => $newStatus
+        ]);
     }
 }
