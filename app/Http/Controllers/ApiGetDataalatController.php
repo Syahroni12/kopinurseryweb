@@ -132,6 +132,46 @@ class ApiGetDataalatController extends Controller
         return response()->json(['message' => 'Logout successful'], 200);
     }
 
+    public function chart()
+    {
+        $tanggal_sekarang = Carbon::now();
+        $seminggu_lalu = Carbon::now()->subWeek();
+
+        $data = Monicontrolling::whereBetween('created_at', [$seminggu_lalu, $tanggal_sekarang])->selectRaw('created_at as tanggal, AVG(nilai_temperature) as avg_temperature, AVG(nilai_humidity) as avg_humidity')->groupBy('tanggal')->orderBy('tanggal')->get();
+        if ($data->isNotEmpty()) {
+            return response()->json([
+                'data' => $data,
+                "dari_tanggal" => $seminggu_lalu,
+                "sampai_tanggal" => $tanggal_sekarang
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Data not found'
+            ], 404);
+        }
+    }
+    public function chartdaritanggal($tanggal_awal, $tanggal_akhir)
+    {
+        $tanggal_awal = Carbon::parse($tanggal_awal)->format('Y-m-d');
+        $tanggal_akhir = Carbon::parse($tanggal_akhir)->format('Y-m-d');
+
+        $data = Monicontrolling::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->selectRaw('created_at as tanggal, AVG(nilai_temperature) as avg_temperature, AVG(nilai_humidity) as avg_humidity')->groupBy('tanggal')->orderBy('tanggal')->get();
+
+        if ($data->isNotEmpty()) {
+            # code...
+
+            return response()->json([
+                'data' => $data,
+                "dari_tanggal" => $tanggal_awal,
+                "sampai_tanggal" => $tanggal_akhir
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Data not found'
+            ], 404);
+        }
+    }
+
     public function aturpompa()
     {
         // Ambil status dari alat pertama sebagai referensi (misalnya alat dengan ID terkecil)
