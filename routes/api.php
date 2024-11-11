@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LupaPasswordController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\AuthController as AuthControllerController;
 use Illuminate\Http\Request;
@@ -18,6 +19,11 @@ use App\Http\Controllers\ApiGetDataalatController;
 */
 
 Route::post('/login', [AuthController::class, 'gaslogin']);
+
+Route::post('/lupa-password', [AuthController::class, 'verifikasiPhone']);
+Route::post('/lupa-password/verifikasi-otp/{no_telfon}', [AuthController::class, 'verifikasiOTP']);
+Route::post('/lupa-password/reset-password/{no_telfon}', [AuthController::class, 'resetPassword']);
+Route::post('/lupa-password/kirim-ulang-otp/{no_telfon}', [AuthController::class, 'kirimUlangOTP']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/getdataalat/{id}', [ApiGetDataalatController::class, 'index']);
     Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);

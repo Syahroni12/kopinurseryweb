@@ -53,6 +53,7 @@ class ProfileController extends Controller
         if ($request->password != null) {
             $user->password = bcrypt($request->password);
         }
+
         $user->save();
 
 

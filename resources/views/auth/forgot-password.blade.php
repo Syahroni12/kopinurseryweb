@@ -33,6 +33,7 @@
 <body>
   <div id="app">
     <section class="section">
+        @include('sweetalert::alert')
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-2 col-md-8 offset-md-3 col-lg-6 offset-lg-3 col-xl-5 offset-xl-4">
@@ -47,18 +48,19 @@
               </div>
 
               <div class="card-body">
-                <form method="POST">
+                <form method="POST" action="{{ route('forgot-passwordact') }}">
+                    @csrf
                   <div class="form-group">
-                    <label for="phone">
-                      <i class="fas fa-phone" style="transform: rotate(90deg);"></i> No. Telp
+                    <label for="no_telfon">
+                      <i class="fas fa-no_telfon" style="transform: rotate(90deg);"></i> No. Telp
                     </label>
-                    <input id="phone" type="tel" class="form-control" name="phone" tabindex="1" required autofocus>
+                    <input id="no_telfon" type="tel" class="form-control" name="no_telfon" tabindex="1" required autofocus>
                   </div>
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                       Kirim OTP
-                    </button>
+                    </button >
                   </div>
 
                   <div class="form-group text-center">

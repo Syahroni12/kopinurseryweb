@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function pengguna(){
         return $this->hasOne(Pengguna::class,'id_user','id');
     }
+
+    public function otp(){
+        return $this->hasMany(ResetPaswordOtp::class,'id_user','id');
+    }
 }

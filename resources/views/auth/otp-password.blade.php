@@ -7,14 +7,14 @@
   <title>Reset Password</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/modules/fontawesome/css/all.min.css') }}">
 
   <!-- CSS Libraries -->
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
   <!-- Start GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
   <script>
@@ -31,8 +31,10 @@
 </head>
 
 <body>
+
   <div id="app">
     <section class="section">
+        @include('sweetalert::alert')
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-2 col-md-8 offset-md-3 col-lg-6 offset-lg-3 col-xl-5 offset-xl-4">
@@ -47,12 +49,13 @@
               </div>
 
               <div class="card-body">
-                <form method="POST">
+                <form action="{{ route('checkOTP', ['no_telfon' => $no_telfon]) }}" method="POST">
+                    @csrf
                   <div class="form-group d-flex justify-content-center">
-                    <input type="text" class="form-control text-center otp-input" maxlength="1" style="width: 70px; height: 70px; font-size: 24px; margin-right: 10px; border-radius: 12px;" required>
-                    <input type="text" class="form-control text-center otp-input" maxlength="1" style="width: 70px; height: 70px; font-size: 24px; margin-right: 10px; border-radius: 12px;" required>
-                    <input type="text" class="form-control text-center otp-input" maxlength="1" style="width: 70px; height: 70px; font-size: 24px; margin-right: 10px; border-radius: 12px;" required>
-                    <input type="text" class="form-control text-center otp-input" maxlength="1" style="width: 70px; height: 70px; font-size: 24px; border-radius: 12px;" required>
+                    <input type="text" name="otp[]" class="form-control text-center otp-input" maxlength="1" style="width: 70px; height: 70px; font-size: 24px; margin-right: 10px; border-radius: 12px;" required>
+                    <input type="text" name="otp[]" class="form-control text-center otp-input" maxlength="1" style="width: 70px; height: 70px; font-size: 24px; margin-right: 10px; border-radius: 12px;" required>
+                    <input type="text" name="otp[]" class="form-control text-center otp-input" maxlength="1" style="width: 70px; height: 70px; font-size: 24px; margin-right: 10px; border-radius: 12px;" required>
+                    <input type="text"  name="otp[]" class="form-control text-center otp-input" maxlength="1" style="width: 70px; height: 70px; font-size: 24px; border-radius: 12px;" required>
                   </div>
 
                   <div class="form-group">
@@ -61,6 +64,7 @@
                     </button>
                   </div>
                 </form>
+                <a href="{{ route('kirimulangotp', ['no_telfon' => $no_telfon]) }}" class="btn btn-primary text-center">Kirim Ulang Kode</a>
               </div>
             </div>
 
@@ -72,21 +76,21 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="assets/modules/jquery.min.js"></script>
-  <script src="assets/modules/popper.js"></script>
-  <script src="assets/modules/tooltip.js"></script>
-  <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-  <script src="assets/modules/moment.min.js"></script>
-  <script src="assets/js/stisla.js"></script>
+  <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/popper.js') }}"></script>
+  <script src="{{ asset('assets/modules/tooltip.js') }}"></script>
+  <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/moment.min.js') }}"></script>
+  <script src="{{ asset('assets/js/stisla.js') }}"></script>
 
   <!-- JS Libraies -->
 
   <!-- Page Specific JS File -->
 
   <!-- Template JS File -->
-  <script src="assets/js/scripts.js"></script>
-  <script src="assets/js/custom.js"></script>
+  <script src="{{ asset('assets/js/scripts.js') }}"></script>
+  <script src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
 
 </html>

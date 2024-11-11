@@ -186,7 +186,12 @@
                     </li>
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            @if (Auth::user()->pengguna->foto == "avatar.png")
+
                             <img alt="image" src="{{ asset('assets/img/avatar/avatar-2.png') }}" class="rounded-circle mr-1">
+                            @else
+                            <img alt="image" src="{{ asset('foto_profil/' . Auth::user()->pengguna->foto) }}" class="rounded-circle mr-1">
+                            @endif
                             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->pengguna->nama }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
