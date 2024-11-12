@@ -21,7 +21,7 @@ class PenggunaFactory extends Factory
             'alamat' => $this->faker->address(),
             'deskripsi' => $this->faker->sentence(10),
             'foto' => 'avatar.png',
-            'id_user' => null, // Biarkan null, akan diisi dalam Seeder
+            'id_user' => null,
         ];
     }
 }
