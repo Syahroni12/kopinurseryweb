@@ -141,7 +141,7 @@ class AuthController extends Controller
             curl_close($curl);
 
             Alert::success('Kode OTP verifikasi terkirim, cek pesan WhatsApp anda!', 'success');
-            return redirect()->route('otp-password', ['encrypt_telfon' => $encrypt_telfon]);
+            return redirect()->route('otp-password', ['no_telfon' => $encrypt_telfon]);
         } else {
             // Alert::toast('Nomor telepon tidak ditemukan', 'error');
             Alert::error('Error', 'Nomor telepon tidak ditemukan');

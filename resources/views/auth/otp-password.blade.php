@@ -91,6 +91,32 @@
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
+  <script>
+    // Select all OTP input fields
+    const otpInputs = document.querySelectorAll('.otp-input');
+
+    // Add event listener to each input
+    otpInputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        // Move to next input if a value is entered
+        if (input.value.length === 1 && index < otpInputs.length - 1) {
+          otpInputs[index + 1].focus();
+        }
+        // Optionally move to previous input if the value is empty and not the first input
+        else if (input.value.length === 0 && index > 0) {
+          otpInputs[index - 1].focus();
+        }
+      });
+
+      // Add keydown event for Backspace
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && input.value === '' && index > 0) {
+          otpInputs[index - 1].focus();
+        }
+      });
+    });
+  </script>
+
 </body>
 
 </html>

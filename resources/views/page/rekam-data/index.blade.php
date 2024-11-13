@@ -45,13 +45,9 @@
 
           <div class="d-flex justify-content-end align-items-center">
             <!-- date range picker -->
+
             <div class="input-group rounded" style="flex: 1; max-width: 300px; margin-right: 10px; border-radius: 15px; overflow: hidden; background-color: #f0f8ff;">
-              <div class="input-group-prepend">
-                <div class="input-group-text" style="border-top-left-radius: 15px; border-bottom-left-radius: 15px; background-color: #BFFA01; color: black;">
-                  <i class="fas fa-calendar"></i>
-                </div>
-              </div>
-              <input type="text" class="form-control daterange-cus" style="border-top-right-radius: 15px; border-bottom-right-radius: 15px; background-color: #e6f7ff; color: #333;">
+
             </div>
 
             <!-- button cetak -->

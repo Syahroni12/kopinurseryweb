@@ -53,14 +53,17 @@ class ApiGetDataalatController extends Controller
 
         // Simpan data monitoring
         // $monitoring = new Monicontrolling();
+        $temperature = $request->input('temperature');
+        $humidity = $request->input('humidity');
+        $id_alat = $request->input('id_alat');
 
         // Menangkap data dari request yang sudah divalidasi
         $date = Carbon::now();
         try {
             $data =   Monicontrolling::create([
-                'id_alat' => $request->id_alat,
-                'nilai_temperature' => $request->temperature,
-                'nilai_humidity' => $request->humidity,
+                'id_alat' => $id_alat,
+                'nilai_temperature' => $temperature,
+                'nilai_humidity' => $humidity,
                 'created_at' => $date,
                 'updated_at' => $date,
             ]);
