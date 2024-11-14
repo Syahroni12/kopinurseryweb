@@ -41,9 +41,12 @@ Route::get('/hapus_karyawan/{id}', [KaryawanController::class, 'hapus'])->name('
 Route::get('/edit_karyawan/{id}', [KaryawanController::class, 'edit'])->name('edit_karyawan');
 Route::put('/update_karyawan/{id}', [KaryawanController::class, 'update'])->name('update_karyawan');
 Route::post('/store-karyawan', [KaryawanController::class, 'store'])->name('store-karyawan');
+Route::get('/fetch-data', [DashboardController::class, 'fetchData']);
 
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+Route::get('/monitoring/{tgl_awal}/{tgl_akhir}', [RekamdataController::class, 'monitoring'])->name('monitoring');
 Route::post('/profileact', [ProfileController::class, 'simpan'])->name('simpanprofile')->middleware('auth');
 Route::get('/edit-blog/{id}', [BlogController::class, 'edit'])->name('edit-blog');
 Route::get('/detail-blog/{id}', [BlogController::class, 'detail'])->name('detail-blog');
