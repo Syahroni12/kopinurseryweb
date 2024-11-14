@@ -64,7 +64,7 @@
                                 <i class="fas fa-search"></i> cek
                             </button>
                             <!-- button cetak -->
-                            <button class="btn btn-primary mr-2" style="border-radius: 12px; height: 38px;">
+                            <button class="btn btn-primary mr-2" style="border-radius: 12px; height: 38px;" onclick="exportData()">
                                 <i class="fas fa-print"></i> Cetak
                             </button>
                             <a href="{{ route('rekam-data') }}" class="btn btn-danger">refresh</a>
@@ -125,6 +125,22 @@
 
 
             window.location.href = `/monitoring/` + tanggalAwal + `/` + tanggalAkhir;
+        }
+        function exportData() {
+            var tanggalAwal = document.getElementById('tanggal_awal').value;
+            var tanggalAkhir = document.getElementById('tanggal_akhir').value;
+            // Check the active tab
+            const activeTab = document.querySelector('.nav-link.active').id;
+
+            // Redirect based on the active tab
+            if (activeTab === 'home-tab3') {
+                // Redirect to export humidity data
+                window.location.href = `/cetak_humidity/` + tanggalAwal + `/` + tanggalAkhir;
+            } else if (activeTab === 'profile-tab3') {
+                // Redirect to export temperature data
+
+                window.location.href = `/cetak_temperature/` + tanggalAwal + `/` + tanggalAkhir;
+            }
         }
 
 
