@@ -64,9 +64,10 @@
                                 <i class="fas fa-search"></i> cek
                             </button>
                             <!-- button cetak -->
-                            <button class="btn btn-primary" style="border-radius: 12px; height: 38px;">
+                            <button class="btn btn-primary mr-2" style="border-radius: 12px; height: 38px;">
                                 <i class="fas fa-print"></i> Cetak
                             </button>
+                            <a href="{{ route('rekam-data') }}" class="btn btn-danger">refresh</a>
                         </div>
 
                         <div class="tab-content" id="myTabContent2">
