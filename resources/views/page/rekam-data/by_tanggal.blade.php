@@ -15,12 +15,12 @@
 
             <div class="section-body">
                 <!-- <h2 class="section-title">Tabs</h2>
-                      <p class="section-lead">The tab component for dividing parts of content.</p> -->
+                  <p class="section-lead">The tab component for dividing parts of content.</p> -->
 
                 <div class="card">
                     <!-- <div class="card-header">
-                          <h4>Tab <code>.nav-pills</code></h4>
-                        </div> -->
+                      <h4>Tab <code>.nav-pills</code></h4>
+                    </div> -->
                     <div class="card-body">
                         <div class="d-flex justify-content-center mb-4">
                             <ul class="nav nav-pills" id="myTab3" role="tablist" style="width: 100%; max-width: 600px;">
@@ -64,9 +64,10 @@
                                 <i class="fas fa-search"></i> cek
                             </button>
                             <!-- button cetak -->
-                            <button class="btn btn-primary" style="border-radius: 12px; height: 38px;" onclick="exportData()">
+                            <button class="btn btn-primary mr-2" style="border-radius: 12px; height: 38px;" onclick="exportData()">
                                 <i class="fas fa-print"></i> Cetak
                             </button>
+                            <a href="{{ route('rekam-data') }}" class="btn btn-danger">refresh</a>
                         </div>
 
                         <div class="tab-content" id="myTabContent2">
@@ -125,7 +126,6 @@
 
             window.location.href = `/monitoring/` + tanggalAwal + `/` + tanggalAkhir;
         }
-
         function exportData() {
             var tanggalAwal = document.getElementById('tanggal_awal').value;
             var tanggalAkhir = document.getElementById('tanggal_akhir').value;
@@ -142,7 +142,6 @@
                 window.location.href = `/cetak_temperature/` + tanggalAwal + `/` + tanggalAkhir;
             }
         }
-
 
 
 
