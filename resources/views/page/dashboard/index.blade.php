@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="card-wrap">
                                         <div class="card-body" style="font-size: 2rem;" id="temperature-{{ $item['id'] }}">
-                                            {{ $item["nilai_temperature"] }}
+                                            {{ $item["nilai_temperature"]->nilai_temperature ?? "-" }}
                                         </div>
                                         <div class="card-header">
                                             <h4 style="font-size: 1rem;">Suhu</h4>
@@ -37,7 +37,7 @@
                                             style="width: 35px; height: 35px;">
                                     </div>
                                     <div class="card-body" style="font-size: 2rem;" id="humidity-{{ $item['id'] }}">
-                                        {{ $item["nilai_humidity"] }}
+                                        {{ $item["nilai_humidity"]->nilai_humidity  ?? "-" }}
                                     </div>
                                     <div class="card-header">
                                         <h4 style="font-size: 1rem;">Kelembapan</h4>
