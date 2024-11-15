@@ -145,7 +145,7 @@ class AuthController extends Controller
         } else {
             // Alert::toast('Nomor telepon tidak ditemukan', 'error');
             Alert::error('Error', 'Nomor telepon tidak ditemukan');
-            return back()->with('error', 'Nomor telepon tidak ditemukan');
+            return redirect()->back();
         }
     }
 
