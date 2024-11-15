@@ -137,24 +137,38 @@ class AuthController extends Controller
 
     public function verifikasiPhone(Request $request)
     {
-        $validate = $request->validate([
-            'no_telfon' => 'required|numeric|exists:users,no_telfon',
-        ], [
-            'no_telfon.exists' => 'Nomor telepon tidak terdaftar.'
-        ]);
-
         try {
-            $user = User::with('pengguna')->where('no_telfon', $validate['no_telfon'])->first();
+            // Validasi manual untuk kontrol penuh atas respons
+            if (!$request->has('no_telfon')) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Nomor telepon wajib diisi.'
+                ], 422);
+            }
+
+            // Validasi nomor telepon
+            $no_telfon = $request->input('no_telfon');
+
+            // Periksa apakah nomor telepon hanya berisi angka
+            if (!is_numeric($no_telfon)) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Nomor telepon harus berupa angka.'
+                ], 422);
+            }
+
+            // Cek keberadaan user
+            $user = User::with('pengguna')->where('no_telfon', $no_telfon)->first();
 
             if (!$user) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Nomor telepon tidak terdaftar atau tidak memiliki izin untuk menerima OTP.'
-                ], 404);
+                    'message' => 'Nomor telepon tidak terdaftar.'
+                ], 422);
             }
 
             $OTP = rand(1000, 9999);
-            $cek = ResetPaswordOtp::where('no_telfon', $validate['no_telfon'])->first();
+            $cek = ResetPaswordOtp::where('no_telfon', $no_telfon)->first();
 
             if ($cek) {
                 $resetPasswordOtp = $cek;
@@ -169,7 +183,6 @@ class AuthController extends Controller
             $resetPasswordOtp->save();
 
             $token = 'kYjrG5tSaij9kXNG2dYf';
-            $telfon = $validate['no_telfon'];
             $nama_user = $user->pengguna->nama;
 
             $curl = curl_init();
@@ -184,7 +197,7 @@ class AuthController extends Controller
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array(
-                    'target' => $telfon,
+                    'target' => $no_telfon,
                     'message' => "*RESET PASSWORD Nursery Web*\n\nHai *$nama_user*,\n\nKami ingin memberitahu Anda bahwa permintaan reset password Anda telah kami terima. Kode OTP Anda untuk mereset password adalah *$OTP*. Silakan gunakan kode ini dalam aplikasi untuk mengatur ulang kata sandi Anda.\n\nTerima kasih atas kepercayaan Anda pada *Nursery Web*."
                 ),
                 CURLOPT_HTTPHEADER => array(
@@ -199,7 +212,7 @@ class AuthController extends Controller
             if ($response_sms) {
                 return response()->json([
                     'status' => 'success',
-                    'message' => "OTP berhasil dikirim ke nomor telepon yang terdaftar: $telfon."
+                    'message' => "OTP berhasil dikirim ke nomor telepon yang terdaftar: $no_telfon."
                 ], 200);
             } else {
                 return response()->json([
@@ -214,6 +227,7 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
 
     public function verifikasiOTP($no_telfon, Request $request)
     {
@@ -274,25 +288,43 @@ class AuthController extends Controller
 
     public function resetPassword($no_telfon, Request $request)
     {
+        // Cek apakah kedua input kosong
+        if (!$request->has('password') && !$request->has('confirm-password')) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Kedua input masih kosong!'
+            ], 400);
+        }
+
+        // Definisikan nama-nama form
         $name_form = ['password', 'confirm-password'];
-        $message = [
-            'password.required' => 'Password harus diisi.',
-            'password.min' => 'Password harus terdiri dari minimal 8 karakter.',
-            'confirm-password.required' => 'Konfirmasi password harus diisi.',
-            'confirm-password.min' => 'Konfirmasi password harus terdiri dari minimal 8 karakter.',
-        ];
-        $validate = $request->validate([
-            'password' => 'required|min:8',
-            'confirm-password' => 'required|min:8',
-        ], $message);
+
+        try {
+            // Lakukan validasi
+            $validate = $request->validate([
+                'password' => 'required|min:8',
+                'confirm-password' => 'required|min:8',
+            ]);
+        } catch (ValidationException $e) {
+            // Kembalikan respons kustom jika validasi gagal
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terdapat kesalahan pada input!'
+            ], 400);
+        }
+
+        // Ambil pengguna berdasarkan nomor telepon
         $table_users = User::where('no_telfon', $no_telfon)->first();
 
+        // Cek apakah password dan konfirmasi password cocok
         if ($validate[$name_form[1]] !== $validate[$name_form[0]]) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Konfirmasi password tidak cocok!'
             ], 400);
         }
+
+        // Update password jika pengguna ditemukan
         if ($table_users) {
             $table_users->update([
                 'password' => bcrypt($validate[$name_form[0]]),
@@ -305,8 +337,8 @@ class AuthController extends Controller
         } else {
             return response()->json([
                 'status' => 'error',
-                'message' => 'User tidak ditemukan!'
-            ], 400);
+                'message' => 'User  tidak ditemukan!'
+            ], 404); // Menggunakan status 404 untuk user tidak ditemukan
         }
     }
     public function kirimUlangOTP($no_telfon)
