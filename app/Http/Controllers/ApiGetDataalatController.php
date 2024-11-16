@@ -153,16 +153,22 @@ class ApiGetDataalatController extends Controller
             ], 404);
         }
     }
-    public function chartdaritanggal($tanggal_awal, $tanggal_akhir)
+    public function chartdaritanggal($tanggal_awal = null, $tanggal_akhir = null)
     {
-        $tanggal_awal = Carbon::parse($tanggal_awal)->format('Y-m-d');
-        $tanggal_akhir = Carbon::parse($tanggal_akhir)->format('Y-m-d');
+        $tanggal_sekarang = Carbon::now();
+        $seminggu_lalu = Carbon::now()->subWeek();
+        if ($tanggal_awal == null || $tanggal_akhir == null) {
+
+            $tanggal_awal = $seminggu_lalu;
+            $tanggal_akhir = $tanggal_sekarang;
+        } else {
+            $tanggal_awal = Carbon::parse($tanggal_awal)->format('Y-m-d');
+            $tanggal_akhir = Carbon::parse($tanggal_akhir)->format('Y-m-d');
+        }
 
         $data = Monicontrolling::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->selectRaw('created_at as tanggal, AVG(nilai_temperature) as avg_temperature, AVG(nilai_humidity) as avg_humidity')->groupBy('tanggal')->orderBy('tanggal')->get();
 
         if ($data->isNotEmpty()) {
-            # code...
-
             return response()->json([
                 'data' => $data,
                 "dari_tanggal" => $tanggal_awal,
@@ -170,7 +176,11 @@ class ApiGetDataalatController extends Controller
             ]);
         } else {
             return response()->json([
-                'message' => 'Data not found'
+                'message' => 'Data not found',
+                "dari_tanggal" => $tanggal_awal,
+                "sampai_tanggal" => $tanggal_akhir,
+                'data' => $data
+
             ], 404);
         }
     }
