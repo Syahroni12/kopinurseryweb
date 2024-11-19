@@ -19,10 +19,10 @@ class MoniControllingFactory extends Factory
     {
         return [
             'id_alat' => Alat::inRandomOrder()->first()->id,
-            'nilai_humidity' => fake()->randomFloat(2, 0, 100), // Menggunakan randomFloat
-            'nilai_temperature' => fake()->randomFloat(2, 0, 100), // Menggunakan randomFloat
-            'created_at' => now(),
-            'updated_at' => now(),
+            'nilai_humidity' => fake()->randomFloat(2, 0, 100),
+            'nilai_temperature' => fake()->randomFloat(2, 0, 100),
+            'created_at' => now()->addDays(rand(0, 7))->addHours(rand(0, 23))->addMinutes(rand(0, 59)),
+            'updated_at' => now()->addDays(rand(0, 7))->addHours(rand(0, 23))->addMinutes(rand(0, 59)),
         ];
     }
 }

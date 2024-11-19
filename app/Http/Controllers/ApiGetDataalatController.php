@@ -7,6 +7,7 @@ use App\Models\Monicontrolling;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ApiGetDataalatController extends Controller
@@ -153,37 +154,45 @@ class ApiGetDataalatController extends Controller
             ], 404);
         }
     }
-    public function chartdaritanggal($tanggal_awal = null, $tanggal_akhir = null)
-    {
-        $tanggal_sekarang = Carbon::now();
-        $seminggu_lalu = Carbon::now()->subWeek();
-        if ($tanggal_awal == null || $tanggal_akhir == null) {
+    public function chartdaritanggal($tanggal_awal, $tanggal_akhir)
+{
+    // Mengatur tanggal default
+    $tanggal_sekarang = Carbon::now();
+    $tanggal_awal = Carbon::parse($tanggal_awal)->format('Y-m-d');
+    $tanggal_akhir = Carbon::parse($tanggal_akhir)->addDay()->format('Y-m-d');  // Menambahkan 1 hari pada tanggal akhir
 
-            $tanggal_awal = $seminggu_lalu;
-            $tanggal_akhir = $tanggal_sekarang;
-        } else {
-            $tanggal_awal = Carbon::parse($tanggal_awal)->format('Y-m-d');
-            $tanggal_akhir = Carbon::parse($tanggal_akhir)->format('Y-m-d');
-        }
-
-        $data = Monicontrolling::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->selectRaw('created_at as tanggal, AVG(nilai_temperature) as avg_temperature, AVG(nilai_humidity) as avg_humidity')->groupBy('tanggal')->orderBy('tanggal')->get();
-
-        if ($data->isNotEmpty()) {
-            return response()->json([
-                'data' => $data,
-                "dari_tanggal" => $tanggal_awal,
-                "sampai_tanggal" => $tanggal_akhir
-            ]);
-        } else {
-            return response()->json([
-                'message' => 'Data not found',
-                "dari_tanggal" => $tanggal_awal,
-                "sampai_tanggal" => $tanggal_akhir,
-                'data' => $data
-
-            ], 404);
-        }
+    // Cek jika tanggal_awal lebih besar dari tanggal_akhir, jika ya tukar nilai keduanya
+    if (Carbon::parse($tanggal_awal)->greaterThan($tanggal_akhir)) {
+        return response()->json([
+            'message' => 'Tanggal awal tidak boleh lebih besar dari tanggal akhir',
+        ], 400);
     }
+
+    // Query untuk mendapatkan data yang difilter berdasarkan tanggal
+    $data = Monicontrolling::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])
+        ->selectRaw('DATE(created_at) as tanggal, AVG(nilai_temperature) as avg_temperature, AVG(nilai_humidity) as avg_humidity')
+        ->groupBy(DB::raw('DATE(created_at)'))
+        ->orderBy('tanggal')
+        ->get();
+
+    // Mengecek apakah data ditemukan
+    if ($data->isNotEmpty()) {
+        return response()->json([
+            'data' => $data,
+            "dari_tanggal" => $tanggal_awal,
+            "sampai_tanggal" => $tanggal_akhir
+        ]);
+    } else {
+        return response()->json([
+            'message' => 'Data not found',
+            "dari_tanggal" => $tanggal_awal,
+            "sampai_tanggal" => $tanggal_akhir,
+            'data' => $data
+        ], 404);
+    }
+}
+
+
 
     public function aturpompa()
     {
