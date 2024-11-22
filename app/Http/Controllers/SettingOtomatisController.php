@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alat;
+use App\Models\Monicontrolling;
 use App\Models\Settingotomatis;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -13,9 +15,9 @@ class SettingOtomatisController extends Controller
     public function index()
 
     {
-        $status=Alat::where('id',4)->first();
+        $status = Alat::where('id', 4)->first();
         $otomatis = Settingotomatis::first();
-        return view('page.settingotomatis.index', compact('otomatis','status'));
+        return view('page.settingotomatis.index', compact('otomatis', 'status'));
     }
 
     public function otomatis_suhulembab(Request $request)
@@ -141,5 +143,13 @@ class SettingOtomatisController extends Controller
         }
 
         // return redirect()->back()->with('success', 'Data berhasil disimpan!');
+    }
+
+
+
+    public function cek()
+    {
+
+
     }
 }

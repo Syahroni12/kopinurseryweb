@@ -62,3 +62,4 @@ Route::get('/atur_pompaotomatis', [SettingOtomatisController::class, 'index'])->
 Route::post('/otomatis_suhulembab', [SettingOtomatisController::class, 'otomatis_suhulembab'])->name('otomatis_suhulembab');
 Route::post('/otomatis_waktu', [SettingOtomatisController::class, 'otomatis_waktu'])->name('otomatis_waktu');
 Route::get('/control_state', [SettingOtomatisController::class, 'control_state'])->name('control_state');
+Route::get('/cek', [SettingOtomatisController::class, 'cek'])->name('cek');
