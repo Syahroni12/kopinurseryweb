@@ -67,7 +67,9 @@ class ProfileController extends Controller
 
         if ($request->hasFile('foto')) {
             if (auth()->user()->pengguna->foto != "avatar.png") {
-                $file = public_path() . '/foto_profil/' . auth()->user()->foto_profil;
+
+                $file = (public_path('/foto_profil/'.auth()->user()->pengguna->foto));
+                // dd($file);
                 if (file_exists($file)) {
                     unlink($file);
                 }
