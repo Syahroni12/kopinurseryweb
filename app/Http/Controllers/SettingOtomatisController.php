@@ -15,7 +15,8 @@ class SettingOtomatisController extends Controller
     public function index()
 
     {
-        $status = Alat::where('id', 4)->first();
+        $status = Alat::where('id', 3)->first();
+        $status = $status->status;
         $otomatis = Settingotomatis::first();
         return view('page.settingotomatis.index', compact('otomatis', 'status'));
     }
@@ -124,7 +125,7 @@ class SettingOtomatisController extends Controller
     public function control_state()
     {
 
-        $status = Alat::where('id', 4)->first();
+        $status = Alat::where('id', 3)->first();
         if ($status->status == 1) {
 
             $status->status = 0;
@@ -135,9 +136,10 @@ class SettingOtomatisController extends Controller
             $status->save();
         }
         if ($status->status == 1) {
-
-            return redirect()->back()->with('success', ' Pompa diaktifkan!');
+Alert::success('Success', ' Pompa diaktifkan!');
+            return redirect()->back();
         } else {
+            Alert::success('Success', ' Pompa dinonaktifkan!');
             return redirect()->back()->with('success', ' Pompa dinonaktifkan!');
             # code...
         }
@@ -147,9 +149,5 @@ class SettingOtomatisController extends Controller
 
 
 
-    public function cek()
-    {
-
-
-    }
+    public function cek() {}
 }
