@@ -1,9 +1,9 @@
 @extends('layouts.template')
 
 @section('content')
-<style>
-     /* From Uiverse.io by andrew-demchenk0 */
-     .switch {
+    <style>
+        /* From Uiverse.io by andrew-demchenk0 */
+        .switch {
             --input-focus: #4e93f6;
             /* Warna biru yang lebih cerah saat aktif */
             --bg-color: #333333;
@@ -85,7 +85,7 @@
             color: #fff;
             /* Ubah warna teks saat aktif */
         }
-</style>
+    </style>
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -101,21 +101,21 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-body">
-                         <!-- Card Baru -->
-        <div class="card mb-4">
-            <div class="card-header">
-                <h4>Informasi Tambahan</h4>
-            </div>
-            <div class="card-body">
-                <label class="switch">
-                    <input {{ $status == '1' ? 'checked' : '' }} type="checkbox" class="toggle"
-                        onclick="toggleSwitch({{ $status }}, this)" id="toggle">
-                    <span class="slider"></span>
-                    <span class="card-side"></span>
-                </label>
-            </div>
-        </div>
-        <!-- Akhir Card Baru -->
+                        <!-- Card Baru -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Informasi Tambahan</h4>
+                            </div>
+                            <div class="card-body">
+                                <label class="switch">
+                                    <input {{ $status == '1' ? 'checked' : '' }} type="checkbox" class="toggle"
+                                        onclick="toggleSwitch({{ $status }}, this)" id="toggle">
+                                    <span class="slider"></span>
+                                    <span class="card-side"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Akhir Card Baru -->
                         <div class="d-flex justify-content-center mb-4">
                             <ul class="nav nav-pills" id="myTab3" role="tablist" style="width: 100%; max-width: 600px;">
                                 <li class="nav-item" style="flex: 1;">
@@ -286,24 +286,24 @@
     <script>
         function toggleSwitch(status, element) {
 
-const status_awal = status;
-Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-    if (result.isConfirmed) {
-        window.location.href = "/control_state";
-    } else {
-        element.checked = status == '1';
-    }
-});
+            const status_awal = status;
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Apakah ingin mengubah status pompa",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya ubah!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/control_state";
+                } else {
+                    element.checked = status == '1';
+                }
+            });
 
 
-}
+        }
     </script>
 @endsection
