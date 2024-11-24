@@ -424,4 +424,26 @@ class AuthController extends Controller
             ], 404);
         }
     }
+
+
+    public function getPengguna($id) {
+        $user = User::where('id', $id)->first();
+
+        if ($user) {
+            $pengguna = Pengguna::where('id_user', $id)->first();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User  retrieved successfully.',
+                'user' => $user,
+                'pengguna' => $pengguna,
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User  not found.',
+                'user' => null,
+                'pengguna' => null,
+            ], 404);
+        }
+    }
 }

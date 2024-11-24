@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alat;
 use App\Models\Monicontrolling;
+use App\Models\Pengguna;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -155,42 +156,42 @@ class ApiGetDataalatController extends Controller
         }
     }
     public function chartdaritanggal($tanggal_awal, $tanggal_akhir)
-{
-    // Mengatur tanggal default
-    $tanggal_sekarang = Carbon::now();
-    $tanggal_awal = Carbon::parse($tanggal_awal)->format('Y-m-d');
-    $tanggal_akhir = Carbon::parse($tanggal_akhir)->addDay()->format('Y-m-d');  // Menambahkan 1 hari pada tanggal akhir
+    {
+        // Mengatur tanggal default
+        $tanggal_sekarang = Carbon::now();
+        $tanggal_awal = Carbon::parse($tanggal_awal)->format('Y-m-d');
+        $tanggal_akhir = Carbon::parse($tanggal_akhir)->addDay()->format('Y-m-d');  // Menambahkan 1 hari pada tanggal akhir
 
-    // Cek jika tanggal_awal lebih besar dari tanggal_akhir, jika ya tukar nilai keduanya
-    if (Carbon::parse($tanggal_awal)->greaterThan($tanggal_akhir)) {
-        return response()->json([
-            'message' => 'Tanggal awal tidak boleh lebih besar dari tanggal akhir',
-        ], 400);
+        // Cek jika tanggal_awal lebih besar dari tanggal_akhir, jika ya tukar nilai keduanya
+        if (Carbon::parse($tanggal_awal)->greaterThan($tanggal_akhir)) {
+            return response()->json([
+                'message' => 'Tanggal awal tidak boleh lebih besar dari tanggal akhir',
+            ], 400);
+        }
+
+        // Query untuk mendapatkan data yang difilter berdasarkan tanggal
+        $data = Monicontrolling::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])
+            ->selectRaw('DATE(created_at) as tanggal, AVG(nilai_temperature) as avg_temperature, AVG(nilai_humidity) as avg_humidity')
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->orderBy('tanggal')
+            ->get();
+
+        // Mengecek apakah data ditemukan
+        if ($data->isNotEmpty()) {
+            return response()->json([
+                'data' => $data,
+                "dari_tanggal" => $tanggal_awal,
+                "sampai_tanggal" => $tanggal_akhir
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Data not found',
+                "dari_tanggal" => $tanggal_awal,
+                "sampai_tanggal" => $tanggal_akhir,
+                'data' => $data
+            ], 404);
+        }
     }
-
-    // Query untuk mendapatkan data yang difilter berdasarkan tanggal
-    $data = Monicontrolling::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])
-        ->selectRaw('DATE(created_at) as tanggal, AVG(nilai_temperature) as avg_temperature, AVG(nilai_humidity) as avg_humidity')
-        ->groupBy(DB::raw('DATE(created_at)'))
-        ->orderBy('tanggal')
-        ->get();
-
-    // Mengecek apakah data ditemukan
-    if ($data->isNotEmpty()) {
-        return response()->json([
-            'data' => $data,
-            "dari_tanggal" => $tanggal_awal,
-            "sampai_tanggal" => $tanggal_akhir
-        ]);
-    } else {
-        return response()->json([
-            'message' => 'Data not found',
-            "dari_tanggal" => $tanggal_awal,
-            "sampai_tanggal" => $tanggal_akhir,
-            'data' => $data
-        ], 404);
-    }
-}
 
 
 
@@ -216,5 +217,44 @@ class ApiGetDataalatController extends Controller
             'message' => $message,
             'pompa_status' => $newStatus
         ]);
+    }
+
+    public function updateFoto(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status' => 'error', 'message' => $validator->errors()], 422);
+        }
+
+        $pengguna = Pengguna::find($id);
+        if (!$pengguna) {
+            return response()->json(['status' => 'error', 'message' => 'Pengguna tidak ditemukan'], 404);
+        }
+
+        if ($request->hasFile('foto')) {
+            if ($pengguna->foto && $pengguna->foto != 'avatar.png') {
+                $oldFilePath = public_path('foto_profil/' . $pengguna->foto);
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath);
+                }
+            }
+            try {
+                $file = $request->file('foto');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('foto_profil'), $filename);
+
+                // Update foto di database
+                $pengguna->foto = $filename;
+                $pengguna->save();
+            } catch (\Exception $e) {
+                return response()->json(['status' => 'error', 'message' => 'Terjadi kesalahan saat menyimpan foto.'], 500);
+            }
+        }
+
+        // Kembalikan respons sukses
+        return response()->json(['status' => 'success', 'message' => 'Foto berhasil diperbarui.'], 200);
     }
 }

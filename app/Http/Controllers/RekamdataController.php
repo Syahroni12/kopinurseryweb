@@ -62,7 +62,7 @@ class RekamdataController extends Controller
             ->groupBy('tanggal')
             ->orderBy('tanggal')
             ->get();
-        $categories = $data->pluck('tanggal')->toArray(); // Ambil tanggal sebagai kategori
+        $categories = $data->pluck( 'tanggal')->toArray(); // Ambil tanggal sebagai kategori
         $suhuData = $data->pluck('rata_rata_suhu')->toArray();
         $kelembabanData = $data->pluck('rata_rata_kelembaban')->toArray();
 

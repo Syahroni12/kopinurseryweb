@@ -27,11 +27,13 @@ Route::post('/lupa-password/kirim-ulang-otp/{no_telfon}', [AuthController::class
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/getdataalat/{id}', [ApiGetDataalatController::class, 'index']);
+    Route::get('/get-pengguna/{id}', [AuthController::class, 'getPengguna']);
     Route::post('/logout', [AuthControllerController::class, 'logout']);
     Route::post('/check-token', [AuthController::class, 'checkToken']);
     Route::post('/aturpompa', [ApiGetDataalatController::class, 'aturpompa']);
     Route::get('/chart', [ApiGetDataalatController::class, 'chart']);
     Route::get('/chartdaritanggal/{tanggal_awal}/{tanggal_akhir}', [ApiGetDataalatController::class, 'chartdaritanggal']);
+    Route::post('/updatefoto/{id}', [ApiGetDataalatController::class, 'updateFoto']);
 });
 Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
 Route::get('/aturpompaa', [ApiGetDataalatController::class, 'aturpompa']);
