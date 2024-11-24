@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RekamdataController;
+use App\Http\Controllers\SettingOtomatisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,3 +58,8 @@ Route::get('/delete_blog/{id}', [BlogController::class, 'delete'])->name('delete
 Route::put('/update-blog/{id}', [BlogController::class, 'update'])->name('updateblog');
 Route::post('/tambah_blog', [BlogController::class, 'store'])->name('storeblog')->middleware('auth');
 Route::get('/rekam-data', [RekamdataController::class, 'index'])->name('rekam-data');
+Route::get('/atur_pompaotomatis', [SettingOtomatisController::class, 'index'])->name('settingotomatis');
+Route::post('/otomatis_suhulembab', [SettingOtomatisController::class, 'otomatis_suhulembab'])->name('otomatis_suhulembab');
+Route::post('/otomatis_waktu', [SettingOtomatisController::class, 'otomatis_waktu'])->name('otomatis_waktu');
+Route::get('/control_state', [SettingOtomatisController::class, 'control_state'])->name('control_state');
+Route::get('/cek', [SettingOtomatisController::class, 'cek'])->name('cek');

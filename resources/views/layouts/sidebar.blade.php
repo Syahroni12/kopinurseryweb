@@ -13,6 +13,9 @@
                 <a href="{{ route('dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Manajement</li>
+            <li class="dropdown {{ Route::is('settingotomatis') ? 'active' : ''}}">
+                <a href="{{ route('settingotomatis') }}" class="nav-link"><i class="fas fa-file-alt"></i><span>Setting Pompa</span></a>
+            </li>
             <li class="dropdown {{ Route::is('rekam-data') ? 'active' : ''}}">
                 <a href="{{ route('rekam-data') }}" class="nav-link"><i class="fas fa-file-alt"></i><span>Rekam Data</span></a>
             </li>
