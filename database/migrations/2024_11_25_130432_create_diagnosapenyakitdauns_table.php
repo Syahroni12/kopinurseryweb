@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('diagnosapenyakitdauns', function (Blueprint $table) {
             $table->id();
+            $table->string('diagnosa')->nullable(false);
+            $table->string('image')->nullable(false);
+            $table->string('gejala')->nullable();
+            $table->string('solusi')->nullable();
             $table->timestamps();
         });
     }
