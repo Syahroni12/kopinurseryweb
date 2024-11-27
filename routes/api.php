@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/chart', [ApiGetDataalatController::class, 'chart']);
     Route::get('/chartdaritanggal/{tanggal_awal}/{tanggal_akhir}', [ApiGetDataalatController::class, 'chartdaritanggal']);
     Route::post('/updatefoto/{id}', [ApiGetDataalatController::class, 'updateFoto']);
+    Route::post('/update-data-pengguna-without-photo/{id}', [ApiGetDataalatController::class, 'updateDataPenggunaWithoutPhoto']);
 });
 Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
 Route::get('/aturpompaa', [ApiGetDataalatController::class, 'aturpompa']);

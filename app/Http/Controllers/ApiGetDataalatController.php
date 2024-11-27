@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alat;
 use App\Models\Monicontrolling;
 use App\Models\Pengguna;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -256,5 +257,44 @@ class ApiGetDataalatController extends Controller
 
         // Kembalikan respons sukses
         return response()->json(['status' => 'success', 'message' => 'Foto berhasil diperbarui.'], 200);
+    }
+
+    public function updateDataPenggunaWithoutPhoto(Request $request, $id)
+    {
+        // Validasi data
+        $request->validate([
+            'email' => 'nullable|email|unique:users,email,' . $id,
+            'no_telfon' => 'required|unique:users,no_telfon,' . $id,
+            'nama' => 'nullable|string|max:255',
+            'alamat' => 'nullable|string|max:255',
+            'deskripsi' => 'nullable|string',
+        ]);
+
+        try {
+            // Update tabel users
+            $user = User::findOrFail($id);
+            $user->email = $request->input('email', $user->email);
+            $user->no_telfon = $request->input('no_telfon', $user->no_telfon);
+            $user->save();
+
+            // Update tabel penggunas
+            $pengguna = Pengguna::where('id_user', $id)->firstOrFail();
+            $pengguna->nama = $request->input('nama', $pengguna->nama);
+            $pengguna->alamat = $request->input('alamat', $pengguna->alamat);
+            $pengguna->deskripsi = $request->input('deskripsi', $pengguna->deskripsi);
+            $pengguna->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Data pengguna berhasil diperbarui.',
+                'user' => $user,
+                'pengguna' => $pengguna,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 }
