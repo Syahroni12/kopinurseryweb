@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             PenggunaSeeder::class,
             AlatSeeder::class,
             MoniControllingSeeder::class,
-            BlogSeeder::class
+            BlogSeeder::class,
+            DiagnosapenyakitdaunSeeder::class
         ]);
     }
 }
