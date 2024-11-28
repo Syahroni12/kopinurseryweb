@@ -66,13 +66,13 @@
                                         <h4>Hasil Prediksi</h4>
                                     </div>
                                     <div class="card-body">
-                                        @isset($predicted_class)
+                                        @isset($hasil)
                                             <div class="form-group row mb-4">
                                                 <label
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kelas</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <input type="text" class="form-control" name="predicted_class"
-                                                        value="{{ $predicted_class }}" readonly>
+                                                        value="{{ $hasil->diagnosa }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
@@ -80,14 +80,14 @@
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kepercayaan</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <input type="text" class="form-control" name="confidence"
-                                                        value="{{ $confidence }}%" readonly>
+                                                        value="{{ $hasil->keakuratan }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
                                                 <label
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar</label>
                                                 <div class="col-sm-12 col-md-7">
-                                                    <img src="{{ asset('storage/' . $image_path) }}" alt="Gambar Hasil"
+                                                    <img src="{{ asset('diagnosa/' . $hasil->file) }}" alt="Gambar Hasil"
                                                         style="max-width: 100%;">
                                                 </div>
                                             </div>

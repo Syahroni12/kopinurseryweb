@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Diagnosapenyakitdaun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PredicController extends Controller
 {
@@ -13,6 +15,79 @@ class PredicController extends Controller
     }
 
     public function predict(Request $request)
+    {
+        // Validasi file upload
+        $request->validate([
+            'image' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        // Periksa apakah file ada
+        if (!$request->hasFile('image')) {
+            // return response()->json([
+            //     'success' => false,
+            //     'message' => 'File tidak ditemukan dalam request',
+            // ], 400);
+            Alert::error('Gagal', 'File tidak ditemukan dalam request');
+            return redirect()->back();
+        }
+
+        $file = $request->file('image');
+
+        // Debugging untuk path file
+        // \Log::info('File uploaded: ' . $file->getClientOriginalName());
+        // \Log::info('Temporary path: ' . $file->getPathname());
+
+        // Periksa apakah file valid
+        if (!$file->isValid()) {
+            Alert::error('Gagal', 'File tidak valid atau gagal diupload');
+            return redirect()->back();
+        }
+
+        // Kirim file ke API FastAPI
+
+        try {
+            $response = Http::attach(
+                'file',
+                file_get_contents($file->getPathname()), // Gunakan getPathname()
+                $file->getClientOriginalName()
+            )->post('http://127.0.0.1:8000/predict/');
+
+            // Periksa respons dari FastAPI
+            // if ($response->successful()) {
+            $diagnosa = new Diagnosapenyakitdaun();
+            $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension(); //mengambil ekstensi file
+
+            $request->file('image')->move(public_path() . '/diagnosa', $fileName); //mengupload file ke public/produk
+            $diagnosa->file = $fileName;
+            $data = $response->json(); // Decode respons JSON otomatis
+
+            // Ambil nilai predicted_class dan confidence
+            $predictedClass = $data['predicted_class'];
+            $confidence = $data['confidence'];
+            $diagnosa->diagnosa = $predictedClass;
+            $diagnosa->keakuratan = $confidence;
+            $diagnosa->id_user = auth()->user()->id;
+            $diagnosa->save();
+            Alert::success('Berhasil', 'Gambar berhasil diproses');
+            return redirect()->route('hasil_cek');
+
+            // }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal memproses gambar di FastAPI',
+                'error' => $response->body(),
+            ], $response->status());
+        } catch (\Exception $e) {
+            // \Log::error('Error saat menghubungi API FastAPI: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan saat menghubungi API',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    public function predictt(Request $request)
     {
         // Validasi file upload
         $request->validate([
@@ -70,5 +145,41 @@ class PredicController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+
+
+    public function hasil_cek()
+    {
+        $hasil = Diagnosapenyakitdaun::where('id_user', auth()->user()->id)->latest()->first();
+        return view('page.predic.hasil_cek', compact('hasil'));
+    }
+
+
+
+
+    public  function riwayat_predik(){
+        if (auth()->user()->role == 'admin') {
+            $riwayat= Diagnosapenyakitdaun::orderBy('created_at', 'desc')->paginate(20);
+            return view('page.predic.riwayat_predik', compact('riwayat'));
+        } else {
+            $riwayat= Diagnosapenyakitdaun::where('id_user', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(20);
+            return view('page.predic.riwayat_predik', compact('riwayat'));
+        }
+
+
+    }
+
+
+    public function hapus($id) {
+        $riwayat_prediksi = Diagnosapenyakitdaun::find($id);
+        $file = public_path() . '/diagnosa/' . $riwayat_prediksi->file;
+        if (file_exists($file)) {
+            unlink($file);
+        }
+        $riwayat_prediksi->delete();
+        Alert::success('Success', 'Data riwayat_prediksi Berhasil Dihapus');
+
+        return redirect()->route('riwayat_predik');
     }
 }

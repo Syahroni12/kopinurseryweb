@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('diagnosapenyakitdauns', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->string('file')->nullable(false);
             $table->string('diagnosa')->nullable(false);
-            $table->string('image')->nullable(false);
-            $table->string('gejala')->nullable();
-            $table->string('solusi')->nullable();
+            $table->string('keakuratan')->nullable(false);
+
             $table->timestamps();
         });
     }
