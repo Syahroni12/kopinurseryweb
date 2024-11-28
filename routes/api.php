@@ -38,4 +38,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/change-password/{id}', [ApiGetDataalatController::class, 'changePassword']);
 });
 Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
+Route::post('/diagnosa', [ApiGetDataalatController::class, 'diagnosa']);
+// Route::post('/senddataa', [ApiGetDataalatController::class, 'senddata']);
 Route::get('/aturpompaa', [ApiGetDataalatController::class, 'aturpompa']);

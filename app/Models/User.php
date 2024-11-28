@@ -50,4 +50,7 @@ class User extends Authenticatable
     public function otp(){
         return $this->hasMany(ResetPaswordOtp::class,'id_user','id');
     }
+    public function diagnosa(){
+        return $this->hasMany(Diagnosapenyakitdaun::class,'id_user','id');
+    }
 }

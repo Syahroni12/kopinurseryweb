@@ -64,4 +64,7 @@ Route::post('/otomatis_suhulembab', [SettingOtomatisController::class, 'otomatis
 Route::post('/otomatis_waktu', [SettingOtomatisController::class, 'otomatis_waktu'])->name('otomatis_waktu');
 Route::get('/control_state', [SettingOtomatisController::class, 'control_state'])->name('control_state');
 Route::get('/cek', [PredicController::class, 'cek'])->name('cek');
-Route::post('/predict', [PredicController::class, 'predict'])->name('predict');
+Route::post('/predictt', [PredicController::class, 'predict'])->name('predict');
+Route::get('/hasil_cek', [PredicController::class, 'hasil_cek'])->name('hasil_cek');
+Route::get('/riwayat_predik', [PredicController::class, 'riwayat_predik'])->name('riwayat_predik')->middleware('auth');
+Route::get('/hapus_riwayat_predik/{id}', [PredicController::class, 'hapus'])->name('hapus_riwayat_predik')->middleware('auth');
