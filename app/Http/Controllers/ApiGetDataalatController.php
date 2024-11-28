@@ -7,6 +7,8 @@ use App\Models\Monicontrolling;
 use App\Models\Pengguna;
 use App\Models\User;
 use Carbon\Carbon;
+use Dotenv\Exception\ValidationException;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -296,5 +298,36 @@ class ApiGetDataalatController extends Controller
                 'message' => 'Error: ' . $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function changePassword(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Konfirmasi password tidak cocok.'
+            ], 400);
+        }
+
+        if (!Hash::check($request->old_password, Auth::user()->password)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Password lama tidak cocok.'
+            ], 400);
+        }
+
+        $user = User::find($id);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Password berhasil diubah.'
+        ]);
     }
 }
