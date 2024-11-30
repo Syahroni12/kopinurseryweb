@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('diagnosapenyakitdauns', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->string('file')->nullable(false);
             $table->string('diagnosa')->nullable(false);

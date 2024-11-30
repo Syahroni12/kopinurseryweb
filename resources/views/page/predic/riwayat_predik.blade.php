@@ -41,10 +41,7 @@
                                                     <div class="card-body">
                                                         <h5 class="card-title">Diagnosa: {{ $item->diagnosa }}</h5>
                                                         <h6>Tingkat keakuratan: {{ $item->keakuratan }}</h6>
-                                                        @if ($item->user->role == 'admin')
-                                                            <p class="card-text">Pengguna: {{ $item->user->pengguna->nama }}
-                                                            </p>
-                                                        @endif
+
                                                         <button class="btn btn-danger"
                                                             onclick="deleteData({{ $item->id }})">hapus data
                                                         </button>
