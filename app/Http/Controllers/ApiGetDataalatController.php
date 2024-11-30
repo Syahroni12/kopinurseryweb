@@ -259,7 +259,7 @@ class ApiGetDataalatController extends Controller
                 'file',
                 file_get_contents($file->getPathname()), // Gunakan getPathname()
                 $file->getClientOriginalName()
-            )->post('http://127.0.0.1:8000/predict/');
+            )->post('http://127.0.0.1:8001/predict/');
 
             // Periksa respons dari FastAPI
             if ($response->successful()) {
@@ -275,7 +275,7 @@ class ApiGetDataalatController extends Controller
                 $confidence = $data['confidence'];
                 $diagnosa->diagnosa = $predictedClass;
                 $diagnosa->keakuratan = $confidence;
-                $diagnosa->id_user = auth()->user()->id;
+
                 $diagnosa->save();
 
                 return response()->json([
