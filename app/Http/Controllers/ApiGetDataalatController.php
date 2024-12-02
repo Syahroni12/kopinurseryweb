@@ -259,7 +259,7 @@ class ApiGetDataalatController extends Controller
                 'file',
                 file_get_contents($file->getPathname()), // Gunakan getPathname()
                 $file->getClientOriginalName()
-            )->post('http://127.0.0.1:8001/predict/');
+            )->post('http://127.0.0.1:8585/predict/');
 
             // Periksa respons dari FastAPI
             if ($response->successful()) {
