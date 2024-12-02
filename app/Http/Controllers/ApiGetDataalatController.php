@@ -407,4 +407,14 @@ class ApiGetDataalatController extends Controller
             'message' => 'Password berhasil diubah.'
         ]);
     }
+
+    public function relay() {
+        $status=Alat::where('id',3)->first();
+$status=$status->status;
+
+return response()->json([
+    'status' => 'success',
+    'nilai' => $status
+]);
+    }
 }
