@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PredicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RekamdataController;
@@ -21,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/', [LandingPageController::class, 'index'])->name('landing-page')->middleware('guest');
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/forgot-password', [AuthController::class, 'forgotpass'])->name('forgot-password')->middleware('guest');
 
 Route::post('/forgot-passwordact', [AuthController::class, 'forgotpassact'])->name('forgot-passwordact')->middleware('guest');
