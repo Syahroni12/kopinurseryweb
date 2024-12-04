@@ -21,8 +21,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// ROUTE LANDING PAGE
 Route::get('/', [LandingPageController::class, 'index'])->name('landing-page')->middleware('guest');
+Route::get('/about', [LandingPageController::class, 'about'])->name('landing-page-about')->middleware('guest');
+Route::get('/service', [LandingPageController::class, 'service'])->name('landing-page-service')->middleware('guest');
+Route::get('/blog', [LandingPageController::class, 'bloger'])->name('landing-page-blog')->middleware('guest');
+Route::get('/contact', [LandingPageController::class, 'contact'])->name('landing-page-contact')->middleware('guest');
+
+
+
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/forgot-password', [AuthController::class, 'forgotpass'])->name('forgot-password')->middleware('guest');
 

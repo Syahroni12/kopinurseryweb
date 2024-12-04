@@ -77,11 +77,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Beranda</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Services</a>
-                <a href="project.html" class="nav-item nav-link">Blog</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="{{ route('landing-page') }}" class="nav-item nav-link active">Beranda</a>
+                <a href="{{ route('landing-page-about') }}" class="nav-item nav-link">About</a>
+                <a href="{{ route('landing-page-service') }}" class="nav-item nav-link">Services</a>
+                <a href="" class="nav-item nav-link">Blog</a>
+                <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link">Contact</a>
             </div>
             <a href="" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
