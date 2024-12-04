@@ -9,4 +9,20 @@ class LandingPageController extends Controller
     public function index(){
         return view('page.landing-page.index');
     }
+
+    public function about(){
+        return view('page.landing-page.about');
+    }
+
+    public function service(){
+        return view('page.landing-page.service');
+    }
+
+    public function bloger(){
+        return view('page.landing-page.feature');
+    }
+
+    public function contact(){
+        return view('page.landing-page.contact');
+    }
 }
