@@ -19,7 +19,7 @@ def predict(model, img_data, class_names):
 
     return predicted_class, confidence
 
-# Memuat model yang sudah disimpan
+# Memuat model yang sudah disimpanL
 model = tf.keras.models.load_model('public/classify/app/model_20.keras')
 
 

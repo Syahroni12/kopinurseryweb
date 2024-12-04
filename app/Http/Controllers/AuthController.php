@@ -39,7 +39,7 @@ class AuthController extends Controller
 
         if (auth()->attempt($credentials)) {
 
-            Alert::success('Success', 'Login Berhasil di lakukan');
+            Alert::success('success', 'Login Berhasil di lakukan');
             return redirect()->route('dashboard');
         } else {
             Alert::error('Gagal', 'No. Telfon / Password salah');
