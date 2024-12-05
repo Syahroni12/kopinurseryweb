@@ -14,7 +14,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -77,13 +77,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{ route('landing-page') }}" class="nav-item nav-link active">Beranda</a>
+                <a href="{{ route('landing-page') }}" class="nav-item nav-link active">Home</a>
                 <a href="{{ route('landing-page-about') }}" class="nav-item nav-link">About</a>
                 <a href="{{ route('landing-page-service') }}" class="nav-item nav-link">Services</a>
                 <a href="" class="nav-item nav-link">Blog</a>
                 <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a>
+            <!-- <a href="" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
@@ -146,8 +146,8 @@
                                 <i class="fa fa-times text-primary"></i>
                             </div>
                             <div class="ps-3">
-                                <h4>No Hidden Cost</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                <h4>Pemantauan Otomatis</h4>
+                                <span>Sistem monitoring otomatis untuk memantau suhu & kelembapan</span>
                             </div>
                         </div>
                     </div>
@@ -159,8 +159,8 @@
                                 <i class="fa fa-users text-primary"></i>
                             </div>
                             <div class="ps-3">
-                                <h4>Dedicated Team</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                <h4>Bibit Kopi Berkualitas</h4>
+                                <span>Bibit pilihan dan dibudidayakan dengan perawatan maksimal</span>
                             </div>
                         </div>
                     </div>
@@ -172,8 +172,8 @@
                                 <i class="fa fa-phone text-primary"></i>
                             </div>
                             <div class="ps-3">
-                                <h4>24/7 Available</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                <h4>Layanan Konsultasi</h4>
+                                <span>Kami siap memberikan solusi & konsultasi tentang perawatan bibit kopi serta pemeliharaan greenhouse</span>
                             </div>
                         </div>
                     </div>
@@ -192,26 +192,30 @@
                     <img class="img-fluid rounded" data-wow-delay="0.1s" src="{{ asset('assets/landing-page/img/about.jpg') }}">
                 </div>
                 <div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
-                    <h1 class="display-1 text-primary mb-0">25</h1>
-                    <p class="text-primary mb-4">Year of Experience</p>
-                    <h1 class="display-5 mb-4">We Make Your Home Like A Garden</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <h1 class="display-5 mb-4">IQAS Kopi Nursery</h1>
+                    <p class="mb-4">inovasi dan teknologi yang mendukung pertanian modern</p>
+                    <h3 class="display mb-4">Mengubah Greenhouse Anda Menjadi Ekosistem Ideal</h3>
+                    <p class="mb-4">IQAC System berkomitmen membantu petani kopi mengoptimalkan kondisi lingkungan greenhouse melalui teknologi cerdas. Kami berfokus pada kualitas udara dan kesehatan tanaman dengan sistem yang dapat diandalkan dan hemat energi.</p>
                     <a class="btn btn-primary py-3 px-4" href="">Explore More</a>
                 </div>
                 <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="row g-5">
                         <div class="col-12 col-sm-6 col-lg-12">
                             <div class="border-start ps-4">
-                                <i class="fa fa-award fa-3x text-primary mb-3"></i>
-                                <h4 class="mb-3">Award Winning</h4>
-                                <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
+                                <div class="mb-3">
+                                    <img src="{{ asset ('assets/landing-page/img/automation-person.png') }}" alt="">
+                                </div>
+                                <h4 class="mb-3">Pemantauan Otomatis</h4>
+                                <span>Dengan IQAC System, tidak perlu lagi mengkhawatirkan kondisi udara di greenhouse. Sistem ini secara otomatis memantau dan mengendalikan suhu & kelembaban yang optimal bagi pertumbuhan tanaman kopi. </span>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-lg-12">
                             <div class="border-start ps-4">
-                                <i class="fa fa-users fa-3x text-primary mb-3"></i>
-                                <h4 class="mb-3">Dedicated Team</h4>
-                                <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
+                                <div class="mb-3">
+                                    <img src="{{ asset ('assets/landing-page/img/security.png') }}" alt="">
+                                </div>
+                                <h4 class="mb-3">Keamanan Data dan Akses Terjamin</h4>
+                                <span>Kami mengutamakan keamanan akses dengan teknologi verifikasi OTP berbasis nomor telepon. Hanya pengguna yang sah yang bisa mengakses dan mengelola data penting di dalam sistem.</span>
                             </div>
                         </div>
                     </div>
@@ -253,9 +257,9 @@
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="fs-5 fw-bold text-primary">Why Choosing Us!</p>
-                    <h1 class="display-5 mb-4">Few Reasons Why People Choosing Us!</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <p class="fs-5 fw-bold text-primary">Memudahkan </p>
+                    <h1 class="display-5 mb-4">Pengelolaan greenhouse kopi</h1>
+                    <p class="fs-5 fw-bold">Secara Cerdas & Efisien</p>
                     <a class="btn btn-primary py-3 px-4" href="">Explore More</a>
                 </div>
                 <div class="col-lg-6">
@@ -265,17 +269,17 @@
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
                                     <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
                                         <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                                            <i class="fa fa-check fa-3x text-primary"></i>
+                                            <img src="{{ asset ('assets/landing-page/img/iot.png') }}" alt="">
                                         </div>
-                                        <h4 class="mb-0">100% Satisfaction</h4>
+                                        <h4 class="mb-0">Teknologi IoT</h4>
                                     </div>
                                 </div>
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
                                     <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
                                         <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                                            <i class="fa fa-users fa-3x text-primary"></i>
+                                            <img src="{{ asset ('assets/landing-page/img/gear.png') }}" alt="">
                                         </div>
-                                        <h4 class="mb-0">Dedicated Team</h4>
+                                        <h4 class="mb-0">Otomatis</h4>
                                     </div>
                                 </div>
                             </div>
@@ -283,9 +287,9 @@
                         <div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
                             <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
                                 <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                                    <i class="fa fa-tools fa-3x text-primary"></i>
+                                    <img src="{{ asset ('assets/landing-page/img/pemantauan-lingkungan.png') }}" alt="">
                                 </div>
-                                <h4 class="mb-0">Modern Equipment</h4>
+                                <h4 class="mb-0">Pemantauan Lingkungan</h4>
                             </div>
                         </div>
                     </div>
@@ -300,8 +304,8 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="fs-5 fw-bold text-primary">Our Services</p>
-                <h1 class="display-5 mb-5">Services That We Offer For You</h1>
+                <h1 class="display-5 mb-5">Layanan Kami</h1>
+                <!-- <p class="text-primary">Kami menggunakan sensor IoT untuk memantau kelembaban dan suhu ruangan serta menerapkan algoritma pengolahan citra untuk mendeteksi tanda-tanda awal penyakit tanaman. Semua dikendalikan melalui dashboard berbasis web yang ramah pengguna.</p> -->
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -313,9 +317,8 @@
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-3.png') }}" alt="Icon">
                             </div>
-                            <h4 class="mb-3">Landscaping</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                            <h4 class="mb-3">Pemantauan Real-Time dengan Sensor yang Akurat</h4>
+                            <p class="mb-4">Sistem dilengkapi dengan sensor IoT berkualitas tinggi untuk memantau suhu, kelembaban, dan kualitas udara secara real-time. Data yang dihasilkan akurat dan dapat langsung diakses melalui dashboard, memungkinkan pengambilan keputusan yang cepat.</p>
                         </div>
                     </div>
                 </div>
@@ -328,9 +331,8 @@
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-6.png') }}" alt="Icon">
                             </div>
-                            <h4 class="mb-3">Pruning plants</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                            <h4 class="mb-3">Deteksi Penyakit Tanaman Otomatis</h4>
+                            <p class="mb-4">Menggunakan teknologi pengolahan citra, sistem ini dapat mendeteksi tanda-tanda awal penyakit pada tanaman kopi secara otomatis. Fitur ini membantu mencegah penyebaran penyakit lebih lanjut dengan identifikasi dini.</p>
                         </div>
                     </div>
                 </div>
@@ -343,9 +345,8 @@
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-5.png') }}" alt="Icon">
                             </div>
-                            <h4 class="mb-3">Irrigation & Drainage</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                            <h4 class="mb-3">Pengendalian Suhu dan Kelembaban Secara Otomatis</h4>
+                            <p class="mb-4">Sistem cerdas ini memungkinkan pengendalian otomatis atas suhu dan kelembaban di dalam greenhouse. Ini memastikan lingkungan yang optimal untuk pertumbuhan tanaman tanpa perlu pengawasan terus-menerus.</p>
                         </div>
                     </div>
                 </div>
@@ -358,9 +359,8 @@
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-4.png') }}" alt="Icon">
                             </div>
-                            <h4 class="mb-3">Garden Maintenance </h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                            <h4 class="mb-3">Laporan Data Lingkungan yang Lengkap</h4>
+                            <p class="mb-4">IQAC System menyediakan laporan komprehensif mengenai kondisi lingkungan greenhouse yang bisa diekspor dalam format PDF atau Excel. Laporan ini bisa digunakan untuk analisis lebih lanjut dan perencanaan jangka panjang.</p>
                         </div>
                     </div>
                 </div>
@@ -373,9 +373,8 @@
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-8.png') }}" alt="Icon">
                             </div>
-                            <h4 class="mb-3">Green Technology</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                            <h4 class="mb-3">Manajemen Pengguna yang Fleksibel</h4>
+                            <p class="mb-4">Sistem ini memungkinkan pengelolaan pengguna dengan berbagai level akses, mulai dari admin hingga user biasa. Setiap pengguna dapat diatur sesuai dengan tugas dan wewenang yang dimiliki, menjadikan sistem lebih aman dan terorganisir.</p>
                         </div>
                     </div>
                 </div>
@@ -388,9 +387,8 @@
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-2.png') }}" alt="Icon">
                             </div>
-                            <h4 class="mb-3">Urban Gardening</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                            <h4 class="mb-3">Keamanan dengan Verifikasi OTP</h4>
+                            <p class="mb-4">Untuk meningkatkan keamanan, sistem menggunakan verifikasi nomor telepon dan kode OTP (One-Time Password) saat login. Ini memastikan bahwa hanya pengguna yang berwenang yang dapat mengakses sistem, melindungi data penting dari pihak yang tidak bertanggung jawab.</p>
                         </div>
                     </div>
                 </div>
