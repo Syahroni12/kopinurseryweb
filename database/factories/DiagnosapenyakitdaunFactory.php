@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +18,10 @@ class DiagnosapenyakitdaunFactory extends Factory
     public function definition(): array
     {
         return [
+            'id_user' => User::inRandomOrder()->first()->id,
+            'file' => 'masonry (' . fake()->numberBetween(1, 10) . ').jpg',
             'diagnosa' => fake()->randomElement(['Miner', 'Nodisease', 'Rust', 'Phoma']),
-            'image' => 'masonry (' . fake()->numberBetween(1, 10) . ').jpg',
-            'gejala' => fake()->paragraph(),
-            'solusi' => fake()->paragraph(),
+            'keakuratan' => fake()->randomFloat(2, 0, 100),
         ];
     }
 }
