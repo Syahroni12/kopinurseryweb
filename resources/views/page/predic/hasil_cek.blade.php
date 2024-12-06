@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
+
     <body>
         <div class="main-wrapper main-wrapper-1">
             <!-- Main Content -->
@@ -75,6 +76,23 @@
                                                         value="{{ $hasil->diagnosa }}" readonly>
                                                 </div>
                                             </div>
+
+
+                                            <div class="form-group row mb-4">
+                                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Keterangan
+                                                    Penyakit</label>
+                                                <div class="col-sm-12 col-md-7">
+                                                    @if ($hasil->diagnosa == 'phoma')
+                                                    <textarea name="" id="" cols="30" rows="10" disabled>Penyakit ini disebabkan oleh jamur Phoma costaricensis</textarea>
+                                                    @elseif ($hasil->diagnosa == 'miner')
+                                                    <textarea name="" id="" cols="30" rows="10" disabled> Penyakit ini disebabkan oleh larva dari serangga Leucoptera sp., yang dikenal sebagai penggorok daun</textarea>
+                                                    @elseif ($hasil->diagnosa == 'rust')
+                                                    <textarea name="" id="" cols="30" rows="10" disabled> Penyakit ini disebabkan oleh jamur Hemileia vastatrix.</textarea>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+
                                             <div class="form-group row mb-4">
                                                 <label
                                                     class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kepercayaan</label>

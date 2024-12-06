@@ -20,7 +20,7 @@ class DashboardController extends Controller
     {
 
         $data = [];
-        $alat = Alat::where('id', '<', 5)->get();
+        $alat = Alat::where('id', '<', 3)->get();
 
         foreach ($alat as $key => $value) {
             $monicontrolling = $this->getLatestData($value->id);
@@ -43,7 +43,7 @@ class DashboardController extends Controller
     public function fetchData()
     {
         $data = [];
-        $alat = Alat::where('id', '<', 5)->get();
+        $alat = Alat::where('id', '<', 3)->get();
 
         foreach ($alat as $key => $value) {
 
