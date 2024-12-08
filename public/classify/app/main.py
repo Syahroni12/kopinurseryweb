@@ -14,14 +14,20 @@ def predict(model, img_data, class_names):
 
     # Prediksi kelas gambar
     predictions = model.predict(img_array)
-    predicted_class = class_names[np.argmax(predictions[0])]
-    confidence = round(100 * np.max(predictions[0]), 2)
+    max_confidence = np.max(predictions[0])
+    confidence = round(100 * max_confidence, 2)
+
+    # Tentukan kelas berdasarkan confidence
+    if confidence < 55:  # Jika confidence < 55%
+        predicted_class = "NotFound"
+        confidence = 100.0  # Set confidence menjadi 100%
+    else:
+        predicted_class = class_names[np.argmax(predictions[0])]
 
     return predicted_class, confidence
 
 # Memuat model yang sudah disimpan
-model = tf.keras.models.load_model('public/classify/app/model_20.keras')
-
+model = tf.keras.models.load_model('public/classify/app/model_90.keras')
 
 # Daftar nama kelas
 class_names = ['miner', 'nodisease', 'phoma', 'rust']
@@ -32,11 +38,21 @@ app = FastAPI()
 # Route untuk upload gambar dan mendapatkan prediksi
 @app.post("/predict/")
 async def predict_image(file: UploadFile = File(...)):
-    img_data = await file.read()  # Membaca gambar yang diupload
-    predicted_class, confidence = predict(model, img_data, class_names)
+    try:
+        # Membaca data gambar yang diupload
+        img_data = await file.read()
 
-    # Mengembalikan hasil prediksi
-    return JSONResponse(content={
-        "predicted_class": predicted_class,
-        "confidence": f"{confidence}%"
-    })
+        # Memanggil fungsi prediksi
+        predicted_class, confidence = predict(model, img_data, class_names)
+
+        # Mengembalikan hasil prediksi dalam format JSON
+        return JSONResponse(content={
+            "predicted_class": predicted_class,
+            "confidence": f"{confidence}%"
+        })
+
+    except Exception as e:
+        return JSONResponse(content={
+            "error": "Failed to process image",
+            "details": str(e)
+        }, status_code=500)
