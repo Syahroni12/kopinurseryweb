@@ -40,6 +40,5 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
 Route::post('/diagnosa', [ApiGetDataalatController::class, 'diagnosa']);
 // Route::post('/senddataa', [ApiGetDataalatController::class, 'senddata']);
-Route::get('/
-', [ApiGetDataalatController::class, 'relay']);
+Route::get('/relay', [ApiGetDataalatController::class, 'relay']);
 
