@@ -49,6 +49,55 @@ class ApiGetDataalatController extends Controller
         }
     }
 
+    public function dataDiagnosa($params)
+{
+    try {
+        switch ($params) {
+            case 'terbaru':
+                $data_diagnosa = Diagnosapenyakitdaun::latest()->first();
+                break;
+
+            case 'semua':
+                $data_diagnosa = Diagnosapenyakitdaun::all();
+                break;
+
+            case 'miner':
+                $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'miner')->get();
+                break;
+
+            case 'phoma':
+                $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'phoma')->get();
+                break;
+
+            case 'nodisease':
+            case 'health':
+                $data_diagnosa = Diagnosapenyakitdaun::whereIn('diagnosa', ['nodisease', 'health'])->get();
+                break;
+
+            case 'rust':
+                $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'rust')->get();
+                break;
+
+            default:
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Parameter tidak valid'
+                ], 400);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $data_diagnosa
+        ]);
+
+    } catch (\Exception $error) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $error->getMessage()
+        ], 500);
+    }
+}
+
     public function senddata(Request $request)
     {
         // Validasi input
@@ -225,7 +274,7 @@ class ApiGetDataalatController extends Controller
     }
 
 
-    public function diagnosa(Request $request) {
+    public function diagnosa(Request $request, $id) {
         // Validasi file upload
         $request->validate([
             'image' => 'required|file|mimes:jpeg,png,jpg|max:2048',
@@ -259,7 +308,7 @@ class ApiGetDataalatController extends Controller
                 'file',
                 file_get_contents($file->getPathname()), // Gunakan getPathname()
                 $file->getClientOriginalName()
-            )->post('http://192.168.1.18:8585/predict/');
+            )->post('http://192.168.1.7:8585/predict/');
 
             // Periksa respons dari FastAPI
             if ($response->successful()) {
@@ -267,6 +316,7 @@ class ApiGetDataalatController extends Controller
                 $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension(); //mengambil ekstensi file
 
                 $request->file('image')->move(public_path() . '/diagnosa', $fileName); //mengupload file ke public/produk
+                $diagnosa->id_user = $id;
                 $diagnosa->file = $fileName;
                 $data = $response->json(); // Decode respons JSON otomatis
 
