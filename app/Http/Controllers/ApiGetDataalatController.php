@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class ApiGetDataalatController extends Controller
@@ -277,7 +278,7 @@ class ApiGetDataalatController extends Controller
     public function diagnosa(Request $request, $id) {
         // Validasi file upload
         $request->validate([
-            'image' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|file|mimes:jpeg,png,jpg',
         ]);
 
         // Periksa apakah file ada
@@ -289,10 +290,6 @@ class ApiGetDataalatController extends Controller
         }
 
         $file = $request->file('image');
-
-        // Debugging untuk path file
-        // \Log::info('File uploaded: ' . $file->getClientOriginalName());
-        // \Log::info('Temporary path: ' . $file->getPathname());
 
         // Periksa apakah file valid
         if (!$file->isValid()) {
@@ -306,19 +303,21 @@ class ApiGetDataalatController extends Controller
         try {
             $response = Http::attach(
                 'file',
-                file_get_contents($file->getPathname()), // Gunakan getPathname()
+                file_get_contents($file->getPathname()),
                 $file->getClientOriginalName()
             )->post('http://192.168.1.7:8585/predict/');
 
             // Periksa respons dari FastAPI
             if ($response->successful()) {
                 $diagnosa = new Diagnosapenyakitdaun();
-                $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension(); //mengambil ekstensi file
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
 
-                $request->file('image')->move(public_path() . '/diagnosa', $fileName); //mengupload file ke public/produk
+                // Upload file
+                $file->move(public_path() . '/diagnosa', $fileName);
+
                 $diagnosa->id_user = $id;
                 $diagnosa->file = $fileName;
-                $data = $response->json(); // Decode respons JSON otomatis
+                $data = $response->json();
 
                 // Ambil nilai predicted_class dan confidence
                 $predictedClass = $data['predicted_class'];
@@ -326,11 +325,19 @@ class ApiGetDataalatController extends Controller
                 $diagnosa->diagnosa = $predictedClass;
                 $diagnosa->keakuratan = $confidence;
 
+                // Generate deskripsi menggunakan Gemini API
+                $deskripsi = $this->generateDeskripsiWithGemini($predictedClass);
+                $diagnosa->deskripsi = $deskripsi;
+
                 $diagnosa->save();
 
                 return response()->json([
                     'success' => true,
-                    'diagnosa' => $response->json(),
+                    'diagnosa' => [
+                        'predicted_class' => $predictedClass,
+                        'confidence' => $confidence,
+                        'deskripsi' => $deskripsi
+                    ],
                 ]);
             }
 
@@ -340,13 +347,57 @@ class ApiGetDataalatController extends Controller
                 'error' => $response->body(),
             ], $response->status());
         } catch (\Exception $e) {
-            // \Log::error('Error saat menghubungi API FastAPI: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Terjadi kesalahan saat menghubungi API',
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+    private function generateDeskripsiWithGemini($predictedClass) {
+        try {
+            // Gunakan Guzzle atau Http facade untuk request
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+            ])->post('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAu0Bk-gDla6ua4iLtDIywy0io7UJis_1U', [
+                'contents' => [
+                    'parts' => [
+                        'text' => $this->generatePrompt($predictedClass)
+                    ]
+                ],
+                'generationConfig' => [
+                    'maxOutputTokens' => 500,
+                    'temperature' => 0.7,
+                    'topP' => 1.0,
+                    'topK' => 40
+                ],
+            ]);
+
+            if ($response->successful()) {
+                $responseData = $response->json();
+                $generatedText = $responseData['candidates'][0]['content']['parts'][0]['text'] ?? 'Deskripsi tidak tersedia';
+
+                return $generatedText;
+            } else {
+                Log::error('Gemini API Error: ' . $response->body());
+                return "Informasi detail penyakit tidak dapat dihasilkan.";
+            }
+        } catch (\Exception $e) {
+            Log::error('Kesalahan saat menghasilkan deskripsi: ' . $e->getMessage());
+            return "Terjadi kesalahan saat menghasilkan deskripsi.";
+        }
+    }
+
+    private function generatePrompt($predictedClass) {
+        return "Berikan penjelasan mendalam tentang penyakit $predictedClass pada daun kopi.
+        Jelaskan secara rinci:
+        1. Deskripsi umum penyakit
+        2. Gejala yang terlihat
+        3. Penyebab utama
+        4. Cara pencegahan
+        5. Metode penanganan yang efektif
+
+        Gunakan bahasa Indonesia yang jelas dan informatif untuk petani kopi.";
     }
 
     public function updateFoto(Request $request, $id)

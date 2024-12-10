@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('file')->nullable(false);
             $table->string('diagnosa')->nullable(false);
             $table->string('keakuratan')->nullable(false);
+            $table->text('deskripsi')->nullable();
 
             $table->timestamps();
         });

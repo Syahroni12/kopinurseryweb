@@ -10,6 +10,7 @@ class Diagnosapenyakitdaun extends Model
     use HasFactory;
 
     protected $table = 'diagnosapenyakitdauns';
+
     protected $guarded = ['id'];
 
 

@@ -22,6 +22,7 @@ class DiagnosapenyakitdaunFactory extends Factory
             'file' => 'masonry (' . fake()->numberBetween(1, 10) . ').jpg',
             'diagnosa' => fake()->randomElement(['Miner', 'Nodisease', 'Rust', 'Phoma']),
             'keakuratan' => fake()->randomFloat(2, 0, 100),
+            'deskripsi' => fake()->paragraph(),
         ];
     }
 }
