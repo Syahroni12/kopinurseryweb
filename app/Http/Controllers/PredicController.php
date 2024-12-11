@@ -222,15 +222,24 @@ class PredicController extends Controller
     }
 
     private function generatePrompt($predictedClass) {
-        return "Berikan penjelasan mendalam tentang penyakit $predictedClass pada daun kopi.
-        Jelaskan secara rinci:
-        1. Deskripsi umum penyakit
-        2. Gejala yang terlihat
-        3. Penyebab utama
-        4. Cara pencegahan
-        5. Metode penanganan yang efektif
+        if($predictedClass == 'nodisease') {
+            return "Jelaskan kriteria daun kopi yang sehat, normal, dan bebas dari penyakit.
+            Berikan informasi tentang karakteristik daun kopi yang optimal dan cara mempertahankan kondisi kesehatan tersebut.";
+        } else if ($predictedClass == 'NotFound') {
+            return "Buat kalimat yang menyatakan bahwa tidak ada penyakit daun kopi yang dibahas untuk hal ini.";
+        }
+        else {
+            return "Berikan penjelasan mendalam tentang penyakit $predictedClass pada daun kopi.
+            Jelaskan secara rinci:
+            1. Deskripsi umum penyakit
+            2. Gejala yang terlihat
+            3. Penyebab utama
+            4. Cara pencegahan
+            5. Metode penanganan yang efektif
+            6. Solusi alternatif dengan obat tertentu yang bisa digunakan
 
-        Gunakan bahasa Indonesia yang jelas dan informatif untuk petani kopi.";
+            Gunakan bahasa Indonesia yang jelas dan informatif untuk petani kopi.";
+        }
     }
 
 }

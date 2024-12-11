@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alat;
 use App\Models\Diagnosapenyakitdaun;
 use App\Models\Monicontrolling;
+use App\Models\Otomatis;
 use App\Models\Pengguna;
 use App\Models\User;
 use Carbon\Carbon;
@@ -260,13 +261,41 @@ class ApiGetDataalatController extends Controller
         }
 
         // Toggle status: jika 1 jadi 0, jika 0 jadi 1
-        $newStatus = !$firstAlat->status;
+        $status = Alat::where('id', 3)->first();
+        $setting = Otomatis::first();
+        if (($status->status == 1)&&($setting->status == 1)) {
+            $setting->status = 0;
+            $setting->save();
+            $status->status = 0;
+            $message = 'Pompa dimatikan';
+            $status->save();
+        } elseif (($status->status == 0) && ($setting->status == 1)) {
+            $setting->status = 0;
+            $setting->save();
+            $status->status = 1;
+            $message = 'Pompa dihidupkan';
+            $status->save();
+        }elseif (($status->status == 1) && ($setting->status == 0)) {
+            $setting->status = 1;
+            $setting->save();
+            $status->status = 0;
+            $message = 'Pompa dimatikan';
+            $status->save();
+        } elseif (($status->status == 0) && ($setting->status == 0)) {
+            $setting->status = 1;
+            $setting->save();
+            $status->status = 1;
+            $message = 'Pompa diaktifkan';
+            $status->save();
+            # code...
+        }
+
 
         // Update semua alat dengan status yang baru
-        Alat::query()->update(['status' => $newStatus]);
+        // Alat::query()->update(['status' => $newStatus]);
 
         // Pesan respon berdasarkan status terbaru
-        $message = $newStatus ? 'Semua pompa berhasil dihidupkan' : 'Semua pompa berhasil dimatikan';
+        $newStatus = $status->status;
 
         return response()->json([
             'message' => $message,

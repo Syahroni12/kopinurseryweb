@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alat;
 use App\Models\Monicontrolling;
+use App\Models\Otomatis;
 use App\Models\Settingotomatis;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -126,17 +127,31 @@ class SettingOtomatisController extends Controller
     {
 
         $status = Alat::where('id', 3)->first();
-        if ($status->status == 1) {
-
+        $setting = Otomatis::first();
+        if (($status->status == 1)&&($setting->status == 1)) {
+            $setting->status = 0;
+            $setting->save();
             $status->status = 0;
             $status->save();
-        } else {
-            // # code...
+        } elseif (($status->status == 0) && ($setting->status == 1)) {
+            $setting->status = 0;
+            $setting->save();
             $status->status = 1;
             $status->save();
+        }elseif (($status->status == 1) && ($setting->status == 0)) {
+            $setting->status = 1;
+            $setting->save();
+            $status->status = 0;
+            $status->save();
+        } elseif (($status->status == 0) && ($setting->status == 0)) {
+            $setting->status = 1;
+            $setting->save();
+            $status->status = 1;
+            $status->save();
+            # code...
         }
         if ($status->status == 1) {
-Alert::success('Success', ' Pompa diaktifkan!');
+            Alert::success('Success', ' Pompa diaktifkan!');
             return redirect()->back();
         } else {
             Alert::success('Success', ' Pompa dinonaktifkan!');
