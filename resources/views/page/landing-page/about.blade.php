@@ -40,36 +40,10 @@
     <!-- Spinner End -->
 
 
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark text-light px-0 py-2">
-        <div class="row gx-0 d-none d-lg-flex">
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center me-4">
-                    <span class="fa fa-phone-alt me-2"></span>
-                    <span>+012 345 6789</span>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center">
-                    <span class="far fa-envelope me-2"></span>
-                    <span>info@example.com</span>
-                </div>
-            </div>
-            <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center mx-n2">
-                    <span>Follow Us:</span>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="{{ asset('assets/landing-page/img/logo.png') }}" alt="Logo" class="me-3" style="width: 50px; height: 50px;">
             <h1 class="m-0">IQACS Kopi Nursery</h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -80,7 +54,6 @@
                 <a href="{{ route('landing-page') }}" class="nav-item nav-link">Beranda</a>
                 <a href="{{ route('landing-page-about') }}" class="nav-item nav-link active">Tentang</a>
                 <a href="{{ route('landing-page-service') }}" class="nav-item nav-link">Layanan</a>
-                <a href="" class="nav-item nav-link">Blog</a>
                 <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link">Kontak Kami</a>
             </div>
         </div>
@@ -91,14 +64,7 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">About Us</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">About</li>
-                </ol>
-            </nav>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Tentang Kami</h1>
         </div>
     </div>
     <!-- Page Header End -->
@@ -108,33 +74,15 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 align-items-end">
-                <div class="col-lg-3 col-md-5 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded" style="width: 100%; height: auto;" src="{{ asset('assets/landing-page/img/biji_kopi.png') }}">
-                </div>
-                <div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
-                    <h1 class="display-1 text-primary mb-0">25</h1>
-                    <p class="text-primary mb-4">Year of Experience</p>
-                    <h1 class="display-5 mb-4">We Make Your Home Like A Garden</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                    <a class="btn btn-primary py-3 px-4" href="">Explore More</a>
-                </div>
-                <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="row g-5">
-                        <div class="col-12 col-sm-6 col-lg-12">
-                            <div class="border-start ps-4">
-                                <i class="fa fa-award fa-3x text-primary mb-3"></i>
-                                <h4 class="mb-3">Award Winning</h4>
-                                <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-lg-12">
-                            <div class="border-start ps-4">
-                                <i class="fa fa-users fa-3x text-primary mb-3"></i>
-                                <h4 class="mb-3">Dedicated Team</h4>
-                                <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
-                            </div>
-                        </div>
-                    </div>
+                <img class="img-fluid rounded" style="width: 550px; height: 500px;" src="{{ asset('assets/landing-page/img/biji_kopi.png') }}">
+                <div class="col-lg-7 col-md-9 wow fadeInUp" data-wow-delay="0.3s">
+                    <h2 class="display-5 text-black mb-0">Emang Sistem Seperti Apasih?</h2>
+                    <h3 class="text-black mb-4">Solusi Inovatif untuk Greenhouse Kopi</h3>
+                    <p class="mb-4">IQACS (Intelligence Quality Air Control System) adalah solusi teknologi berbasis IoT yang dirancang khusus untuk mengoptimalkan pengelolaan greenhouse pada nursery bibit kopi. Kami menyediakan sistem monitoring dan kontrol otomatis yang membantu menjaga stabilitas suhu, kelembaban, serta kualitas udara di dalam greenhouse, sehingga mendukung pertumbuhan bibit kopi yang sehat dan berkualitas.</p>
+                    <h3 class="text-black mb-4">Fitur Unggulan yang Tersedia</h3>
+                    <p class="mb-4">Selain fitur monitoring lingkungan, IQACS juga dilengkapi dengan teknologi deteksi penyakit pada bibit kopi. Melalui sensor dan analisis data, sistem kami mampu mengidentifikasi gejala awal penyakit pada tanaman secara real-time. Dengan demikian, tindakan pencegahan dapat dilakukan lebih cepat dan efektif, sehingga meminimalisir kerugian akibat penularan penyakit.</p>
+                    <h3 class="text-black mb-4">Komitmen Kami</h3>
+                    <p class="mb-4">Kami berkomitmen untuk memberikan inovasi terbaik dalam menjaga kualitas bibit kopi, meningkatkan produktivitas, dan memajukan industri kopi melalui teknologi modern.</p>
                 </div>
             </div>
         </div>
@@ -143,10 +91,10 @@
 
 
     <!-- Facts Start -->
-    <div class="container-fluid facts my-5 py-5" data-parallax="scroll" data-image-src="{{ asset('assets/landing-page/img/carousel-1.jpg') }}">
+    <div class="container-fluid facts my-5 py-5" data-parallax="scroll" data-image-src="{{ asset('assets/landing-page/img/carousel-6.jpg') }}">
         <div class="container py-5">
             <div class="row g-5">
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                <!-- <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
                     <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
                     <span class="fs-5 fw-semi-bold text-light">Happy Clients</span>
                 </div>
@@ -161,7 +109,7 @@
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
                     <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
                     <span class="fs-5 fw-semi-bold text-light">Awards Achieved</span>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -172,49 +120,73 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="fs-5 fw-bold text-primary">Our Team</p>
-                <h1 class="display-5 mb-5">Dedicated & Experienced Team Members</h1>
+                <p class="fs-5 fw-bold text-primary">Fitur-Fitur</p>
+                <h1 class="display-5 mb-5">Fitur unggulan dari sistem ini</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/team-1.jpg') }}" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">Doris Jordan</h4>
-                            <p class="text-primary">Landscape Designer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-11.png') }}" alt="Icon">
                             </div>
+                            <h4 class="mb-3">Monitoring Real-Time</h4>
+                            <p class="mb-4">Pengguna dapat melihat data suhu, kelembaban, dan kualitas udara secara langsung melalui dashboard yang tersedia, baik di komputer maupun perangkat mobile.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/team-2.jpg') }}" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">Johnny Ramirez</h4>
-                            <p class="text-primary">Garden Designer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-12.png') }}" alt="Icon">
                             </div>
+                            <h4 class="mb-3">Kontrol Otomatis</h4>
+                            <p class="mb-4">Sistem dapat mengatur dan menyesuaikan suhu serta kelembaban secara otomatis sesuai kebutuhan tanaman. Hal ini membantu menjaga stabilitas lingkungan tanpa intervensi manual yang berlebihan.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/team-3.jpg') }}" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">Diana Wagner</h4>
-                            <p class="text-primary">Senior Gardener</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-13.png') }}" alt="Icon">
                             </div>
+                            <h4 class="mb-3">Deteksi Penyakit Tanaman</h4>
+                            <p class="mb-4">Menggunakan sensor dan algoritma cerdas, IQACS dapat mendeteksi gejala awal penyakit pada bibit kopi. Dengan informasi ini, petani dapat mengambil tindakan cepat untuk mencegah penyebaran penyakit lebih lanjut.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-11.png') }}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Notifikasi dan Peringatan</h4>
+                            <p class="mb-4">Sistem ini memungkinkan pengelolaan pengguna dengan berbagai level akses, mulai dari admin hingga user biasa. Setiap pengguna dapat diatur sesuai dengan tugas dan wewenang yang dimiliki, menjadikan sistem lebih aman dan terorganisir.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-12.png') }}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Laporan Data dan Analisis</h4>
+                            <p class="mb-4">IQACS menyimpan data historis yang terekam dari sensor. Data ini dapat diakses untuk analisis dan dapat diunduh dalam bentuk laporan, membantu pengguna dalam pengambilan keputusan berdasarkan data yang valid.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-13.png') }}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Akses Jarak Jauh</h4>
+                            <p class="mb-4">Pengguna dapat mengakses dan mengontrol sistem dari jarak jauh melalui aplikasi mobile atau web, sehingga mereka tetap dapat memantau kondisi greenhouse di mana saja dan kapan saja.</p>
                         </div>
                     </div>
                 </div>
@@ -224,15 +196,21 @@
     <!-- Team End -->
 
 
+
+
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <h4 class="text-white mb-4">IQACS Kopi Nursery</h4>
+                    <p>IQAC System berkomitmen membantu petani kopi mengoptimalkan kondisi lingkungan greenhouse melalui teknologi cerdas. Kami berfokus pada kualitas udara dan kesehatan tanaman dengan sistem yang dapat diandalkan dan hemat energi.</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Informasi Kontak</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Mastrip, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 85748100201</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>nursery-mbkm.researce-ai.my.id</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
@@ -241,20 +219,23 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="">Landscaping</a>
-                    <a class="btn btn-link" href="">Pruning plants</a>
-                    <a class="btn btn-link" href="">Urban Gardening</a>
-                    <a class="btn btn-link" href="">Garden Maintenance</a>
-                    <a class="btn btn-link" href="">Green Technology</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
+                    <h4 class="text-white mb-4">Social Media</h4>
+                    <a class="btn btn-link" href="https://www.instagram.com" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        IQACS Kopi Nursery
+                    </a>
+                    <a class="btn btn-link" href="https://www.facebook.com" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                        IQACS Kopi Nursery
+                    </a>
+                    <a class="btn btn-link" href="https://twitter.com" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                        IQACS Kopi Nursery
+                    </a>
+                    <a class="btn btn-link" href="https://www.youtube.com" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                        IQACS Kopi Nursery
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Newsletter</h4>

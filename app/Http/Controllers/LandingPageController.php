@@ -18,10 +18,6 @@ class LandingPageController extends Controller
         return view('page.landing-page.service');
     }
 
-    public function bloger(){
-        return view('page.landing-page.feature');
-    }
-
     public function contact(){
         return view('page.landing-page.contact');
     }

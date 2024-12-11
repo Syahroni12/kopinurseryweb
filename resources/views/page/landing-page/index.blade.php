@@ -32,6 +32,32 @@
     <link href="{{ asset('assets/landing-page/css/style.css') }}" rel="stylesheet">
 </head>
 
+<style>
+    .about-section {
+        background-image: url('{{ asset("assets/landing-page/img/about-background.png") }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #ffffff;
+        /* Menyesuaikan warna teks agar kontras dengan background */
+        padding: 50px 0;
+        /* Tambahkan padding jika perlu */
+        min-width: 181vh;
+    }
+
+    .service-section {
+        background-image: url('{{ asset("assets/landing-page/img/background_1.jpg") }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #ffffff;
+        /* Menyesuaikan warna teks agar kontras dengan background */
+        padding: 50px 0;
+        /* Tambahkan padding jika perlu */
+        min-width: 181vh;
+    }
+</style>
+
 <body>
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -39,37 +65,10 @@
     </div>
     <!-- Spinner End -->
 
-
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark text-light px-0 py-2">
-        <div class="row gx-0 d-none d-lg-flex">
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center me-4">
-                    <span class="fa fa-phone-alt me-2"></span>
-                    <span>+62 85748100201</span>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center">
-                    <span class="far fa-envelope me-2"></span>
-                    <span>nursery-mbkm.researce-ai.my.id</span>
-                </div>
-            </div>
-            <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center mx-n2">
-                    <span>Follow Us:</span>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="{{ asset('assets/landing-page/img/logo.png') }}" alt="Logo" class="me-3" style="width: 50px; height: 50px;">
             <h1 class="m-0">IQACS Kopi Nursery</h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -80,7 +79,6 @@
                 <a href="{{ route('landing-page') }}" class="nav-item nav-link active">Beranda</a>
                 <a href="{{ route('landing-page-about') }}" class="nav-item nav-link">Tentang</a>
                 <a href="{{ route('landing-page-service') }}" class="nav-item nav-link">Layanan</a>
-                <a href="" class="nav-item nav-link">Blog</a>
                 <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link">Kontak Kami</a>
             </div>
             <!-- <a href="" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
@@ -94,26 +92,24 @@
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="{{ asset('assets/landing-page/img/carousel-1.jpg') }}" alt="Image">
+                    <img class="w-100" src="{{ asset('assets/landing-page/img/carousel-4.jpg') }}" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <h1 class="display-1 text-white mb-5 animated slideInDown">Buat Lingkungan Ideal untuk Kopi Berkualitas Tinggi</h1>
-                                    <a href="" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="{{ asset('assets/landing-page/img/carousel-2.jpg') }}" alt="Image">
+                    <img class="w-100" src="{{ asset('assets/landing-page/img/carousel-5.png') }}" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-7">
-                                    <h1 class="display-1 text-white mb-5 animated slideInDown">Create Your Own Small Garden At Home</h1>
-                                    <a href="" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
+                                    <h1 class="display-1 text-white mb-5 animated slideInDown">Lingkungan Ideal Untuk Menghasilkan Bibit Kopi Yang Berkualitas</h1>
                                 </div>
                             </div>
                         </div>
@@ -185,18 +181,17 @@
 
 
     <!-- About Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5 about-section">
         <div class="container">
             <div class="row g-5 align-items-end">
                 <div class="col-lg-3 col-md-5 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded" data-wow-delay="0.1s" src="{{ asset('assets/landing-page/img/about.jpg') }}">
+                    <img class="img-fluid rounded" src="">
                 </div>
                 <div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
-                    <h1 class="display-5 mb-4">IQAS Kopi Nursery</h1>
+                    <h1 class="display-5 mb-4 text-white">IQAS Kopi Nursery</h1>
                     <p class="mb-4">inovasi dan teknologi yang mendukung pertanian modern</p>
-                    <h3 class="display mb-4">Mengubah Greenhouse Anda Menjadi Ekosistem Ideal</h3>
+                    <h3 class="display mb-4 text-white">Mengubah Greenhouse Anda Menjadi Ekosistem Ideal</h3>
                     <p class="mb-4">IQAC System berkomitmen membantu petani kopi mengoptimalkan kondisi lingkungan greenhouse melalui teknologi cerdas. Kami berfokus pada kualitas udara dan kesehatan tanaman dengan sistem yang dapat diandalkan dan hemat energi.</p>
-                    <a class="btn btn-primary py-3 px-4" href="">Explore More</a>
                 </div>
                 <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="row g-5">
@@ -205,7 +200,7 @@
                                 <div class="mb-3">
                                     <img src="{{ asset ('assets/landing-page/img/automation-person.png') }}" alt="">
                                 </div>
-                                <h4 class="mb-3">Pemantauan Otomatis</h4>
+                                <h4 class="mb-3 text-white">Pemantauan Otomatis</h4>
                                 <span>Dengan IQAC System, tidak perlu lagi mengkhawatirkan kondisi udara di greenhouse. Sistem ini secara otomatis memantau dan mengendalikan suhu & kelembaban yang optimal bagi pertumbuhan tanaman kopi. </span>
                             </div>
                         </div>
@@ -214,7 +209,7 @@
                                 <div class="mb-3">
                                     <img src="{{ asset ('assets/landing-page/img/security.png') }}" alt="">
                                 </div>
-                                <h4 class="mb-3">Keamanan Data dan Akses Terjamin</h4>
+                                <h4 class="mb-3 text-white">Keamanan Data dan Akses Terjamin</h4>
                                 <span>Kami mengutamakan keamanan akses dengan teknologi verifikasi OTP berbasis nomor telepon. Hanya pengguna yang sah yang bisa mengakses dan mengelola data penting di dalam sistem.</span>
                             </div>
                         </div>
@@ -225,30 +220,25 @@
     </div>
     <!-- About End -->
 
-
     <!-- Facts Start -->
-    <div class="container-fluid facts my-5 py-5" data-parallax="scroll" data-image-src="{{ asset('assets/landing-page/img/carousel-1.jpg') }}">
+    <!-- <div class="container-fluid facts my-5 py-5" data-parallax="scroll">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
-                    <span class="fs-5 fw-semi-bold text-light">Happy Clients</span>
+                    <h3 class="text-black">Real-Time monitoring</h3>
+                    <span class="fs-5 text-black">Data lingkungan greenhouse selalu up-to-date.</span>
                 </div>
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
-                    <span class="fs-5 fw-semi-bold text-light">Garden Complated</span>
+                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                    <h3 class="text-black">Otomatisasi Pengendalian</h3>
+                    <span class="fs-5 text-black">Kontrol suhu dan kelembaban yang presisi tanpa intervensi manual.</span>
                 </div>
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
-                    <span class="fs-5 fw-semi-bold text-light">Dedicated Staff</span>
-                </div>
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
-                    <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
-                    <span class="fs-5 fw-semi-bold text-light">Awards Achieved</span>
+                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                    <h3 class="text-black">Laporan Komprehensif</h3>
+                    <span class="fs-5 text-black">Data lengkap yang bisa diekspor untuk analisis lebih lanjut.</span>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Facts End -->
 
 
@@ -260,7 +250,6 @@
                     <p class="fs-5 fw-bold text-primary">Memudahkan </p>
                     <h1 class="display-5 mb-4">Pengelolaan greenhouse kopi</h1>
                     <p class="fs-5 fw-bold">Secara Cerdas & Efisien</p>
-                    <a class="btn btn-primary py-3 px-4" href="">Explore More</a>
                 </div>
                 <div class="col-lg-6">
                     <div class="row g-4 align-items-center">
@@ -301,18 +290,15 @@
 
 
     <!-- Service Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5 service-section">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-5 mb-5">Layanan Kami</h1>
-                <!-- <p class="text-primary">Kami menggunakan sensor IoT untuk memantau kelembaban dan suhu ruangan serta menerapkan algoritma pengolahan citra untuk mendeteksi tanda-tanda awal penyakit tanaman. Semua dikendalikan melalui dashboard berbasis web yang ramah pengguna.</p> -->
+                <h1 class="display-5 mb-5 text-white">Layanan Kami</h1>
+                <p class="text-white">Kami menggunakan sensor IoT untuk memantau kelembaban dan suhu ruangan serta menerapkan algoritma pengolahan citra untuk mendeteksi tanda-tanda awal penyakit tanaman. Semua dikendalikan melalui dashboard berbasis web yang ramah pengguna.</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-1.jpg') }}" alt="">
-                        </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-3.png') }}" alt="Icon">
@@ -324,9 +310,6 @@
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-2.jpg') }}" alt="">
-                        </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-6.png') }}" alt="Icon">
@@ -338,9 +321,6 @@
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-3.jpg') }}" alt="">
-                        </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-5.png') }}" alt="Icon">
@@ -352,9 +332,6 @@
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-4.jpg') }}" alt="">
-                        </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-4.png') }}" alt="Icon">
@@ -366,9 +343,6 @@
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-5.jpg') }}" alt="">
-                        </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-8.png') }}" alt="Icon">
@@ -380,9 +354,6 @@
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-6.jpg') }}" alt="">
-                        </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <img class="img-fluid" src="{{ asset('assets/landing-page/img/icon/icon-2.png') }}" alt="Icon">
@@ -397,154 +368,8 @@
     </div>
     <!-- Service End -->
 
-
-    <!-- Quote Start -->
-    <div class="container-fluid quote my-5 py-5" data-parallax="scroll" data-image-src="{{ asset('assets/landing-page/img/carousel-2.jpg') }}">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="bg-white rounded p-4 p-sm-5 wow fadeIn" data-wow-delay="0.5s">
-                        <h1 class="display-5 text-center mb-5">Get A Free Quote</h1>
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control bg-light border-0" id="gname" placeholder="Gurdian Name">
-                                    <label for="gname">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control bg-light border-0" id="gmail" placeholder="Gurdian Email">
-                                    <label for="gmail">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control bg-light border-0" id="cname" placeholder="Child Name">
-                                    <label for="cname">Your Mobile</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control bg-light border-0" id="cage" placeholder="Child Age">
-                                    <label for="cage">Service Type</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control bg-light border-0" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <button class="btn btn-primary py-3 px-4" type="submit">Submit Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Quote End -->
-
-
-    <!-- Projects Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="fs-5 fw-bold text-primary">Our Projects</p>
-                <h1 class="display-5 mb-5">Some Of Our Wonderful Projects</h1>
-            </div>
-            <div class="row wow fadeInUp" data-wow-delay="0.3s">
-                <div class="col-12 text-center">
-                    <ul class="list-inline rounded mb-5" id="portfolio-flters">
-                        <li class="mx-2 active" data-filter="*">All</li>
-                        <li class="mx-2" data-filter=".first">Complete Projects</li>
-                        <li class="mx-2" data-filter=".second">Ongoing Projects</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row g-4 portfolio-container">
-                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-1.jpg') }}" alt="">
-                        <div class="portfolio-text">
-                            <h4 class="text-white mb-4">Landscaping</h4>
-                            <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="{{ asset('assets/landing-page/img/service-1.jpg') }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-2.jpg') }}" alt="">
-                        <div class="portfolio-text">
-                            <h4 class="text-white mb-4">Pruning plants</h4>
-                            <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="{{ asset('assets/landing-page/img/service-2.jpg') }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-3.jpg') }}" alt="">
-                        <div class="portfolio-text">
-                            <h4 class="text-white mb-4">Irrigation & Drainage</h4>
-                            <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="{{ asset('assets/landing-page/img/service-3.jpg') }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-4.jpg') }}" alt="">
-                        <div class="portfolio-text">
-                            <h4 class="text-white mb-4">Garden Maintenance</h4>
-                            <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="{{ asset('assets/landing-page/img/service-4.jpg') }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-5.jpg') }}" alt="">
-                        <div class="portfolio-text">
-                            <h4 class="text-white mb-4">Green Technology</h4>
-                            <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="{{ asset('assets/landing-page/img/service-5.jpg') }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/service-6.jpg') }}" alt="">
-                        <div class="portfolio-text">
-                            <h4 class="text-white mb-4">Urban Gardening</h4>
-                            <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" href="{{ asset('assets/landing-page/img/service-6.jpg') }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Projects End -->
-
-
     <!-- Team Start -->
-    <div class="container-xxl py-5">
+    <!-- <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="fs-5 fw-bold text-primary">Our Team</p>
@@ -553,7 +378,7 @@
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item rounded">
-                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/team-1.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/landing-page/img/bintang.jpg') }}" alt="">
                         <div class="team-text">
                             <h4 class="mb-0">Doris Jordan</h4>
                             <p class="text-primary">Landscape Designer</p>
@@ -595,33 +420,36 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Team End -->
 
 
-    <!-- Testimonial Start -->
+    <!-- Blog Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="fs-5 fw-bold text-primary">Testimonial</p>
-                    <h1 class="display-5 mb-5">What Our Clients Say About Us!</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo.</p>
-                    <a class="btn btn-primary py-3 px-4" href="">See More</a>
+                    <p class="fs-5 fw-bold text-primary">Blog</p>
+                    <h1 class="display-5 mb-5">Apa yang sedang dibahas hari ini!</h1>
+                    <p class="mb-4">Blog disini akan banyak membahas tentang perkemabangan teknologi, berita, agrikultur seputar greenhouse pembibitan kopi yang sedang kami kembangkan</p>
                 </div>
                 <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="owl-carousel testimonial-carousel">
-                        <div class="testimonial-item">
-                            <img class="img-fluid rounded mb-3" src="{{ asset('assets/landing-page/img/testimonial-1.jpg') }}" alt="">
-                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
-                            <h4>Client Name</h4>
-                            <span>Profession</span>
+                        <div class="testimonial-item d-flex align-items-center">
+                            <img class="img-fluid rounded me-3" style="width: 300px; height: 300px;" src="{{ asset('assets/landing-page/img/image-3.png') }}" alt="">
+                            <div>
+                                <p class="fs-5 mb-2">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
+                                <h4 class="mb-0">Kategori</h4>
+                                <span>Agrikultur</span>
+                            </div>
                         </div>
-                        <div class="testimonial-item">
-                            <img class="img-fluid rounded mb-3" src="{{ asset('assets/landing-page/img/testimonial-2.jpg') }}" alt="">
-                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
-                            <h4>Client Name</h4>
-                            <span>Profession</span>
+                        <div class="testimonial-item d-flex align-items-center">
+                            <img class="img-fluid rounded me-3" style="width: 300px; height: 300px;" src="{{ asset('assets/landing-page/img/image-3.png') }}" alt="">
+                            <div>
+                                <p class="fs-5 mb-2">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
+                                <h4 class="mb-0">Kategori</h4>
+                                <span>Agrikultur</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -636,9 +464,13 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <h4 class="text-white mb-4">IQACS Kopi Nursery</h4>
+                    <p>IQAC System berkomitmen membantu petani kopi mengoptimalkan kondisi lingkungan greenhouse melalui teknologi cerdas. Kami berfokus pada kualitas udara dan kesehatan tanaman dengan sistem yang dapat diandalkan dan hemat energi.</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Informasi Kontak</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Mastrip, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 85748100201</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>nursery-mbkm.researce-ai.my.id</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
@@ -648,20 +480,23 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="">Landscaping</a>
-                    <a class="btn btn-link" href="">Pruning plants</a>
-                    <a class="btn btn-link" href="">Urban Gardening</a>
-                    <a class="btn btn-link" href="">Garden Maintenance</a>
-                    <a class="btn btn-link" href="">Green Technology</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
+                    <h4 class="text-white mb-4">Social Media</h4>
+                    <a class="btn btn-link" href="https://www.instagram.com" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        IQACS Kopi Nursery
+                    </a>
+                    <a class="btn btn-link" href="https://www.facebook.com" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                        IQACS Kopi Nursery
+                    </a>
+                    <a class="btn btn-link" href="https://twitter.com" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                        IQACS Kopi Nursery
+                    </a>
+                    <a class="btn btn-link" href="https://www.youtube.com" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                        IQACS Kopi Nursery
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Newsletter</h4>
