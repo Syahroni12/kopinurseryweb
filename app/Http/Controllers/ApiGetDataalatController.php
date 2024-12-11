@@ -51,53 +51,56 @@ class ApiGetDataalatController extends Controller
     }
 
     public function dataDiagnosa($params)
-{
-    try {
-        switch ($params) {
-            case 'terbaru':
-                $data_diagnosa = Diagnosapenyakitdaun::latest()->first();
-                break;
+    {
+        try {
+            switch ($params) {
+                case 'terbaru':
+                    $data_diagnosa = Diagnosapenyakitdaun::latest()->first();
+                    break;
 
-            case 'semua':
-                $data_diagnosa = Diagnosapenyakitdaun::all();
-                break;
+                case 'sejamlalu':
+                    $data_diagnosa = Diagnosapenyakitdaun::where('created_at', '>=', Carbon::now()->subHour())->get();
+                    break;
 
-            case 'miner':
-                $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'miner')->get();
-                break;
+                case 'semua':
+                    $data_diagnosa = Diagnosapenyakitdaun::all();
+                    break;
 
-            case 'phoma':
-                $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'phoma')->get();
-                break;
+                case 'miner':
+                    $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'miner')->get();
+                    break;
 
-            case 'nodisease':
-            case 'health':
-                $data_diagnosa = Diagnosapenyakitdaun::whereIn('diagnosa', ['nodisease', 'health'])->get();
-                break;
+                case 'phoma':
+                    $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'phoma')->get();
+                    break;
 
-            case 'rust':
-                $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'rust')->get();
-                break;
+                case 'nodisease':
+                case 'health':
+                    $data_diagnosa = Diagnosapenyakitdaun::whereIn('diagnosa', ['nodisease', 'health'])->get();
+                    break;
 
-            default:
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'Parameter tidak valid'
-                ], 400);
+                case 'rust':
+                    $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'rust')->get();
+                    break;
+
+                default:
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Parameter tidak valid'
+                    ], 400);
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'data' => $data_diagnosa
+            ]);
+        } catch (\Exception $error) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $error->getMessage()
+            ], 500);
         }
-
-        return response()->json([
-            'status' => 'success',
-            'data' => $data_diagnosa
-        ]);
-
-    } catch (\Exception $error) {
-        return response()->json([
-            'status' => 'error',
-            'message' => $error->getMessage()
-        ], 500);
     }
-}
 
     public function senddata(Request $request)
     {
@@ -275,7 +278,8 @@ class ApiGetDataalatController extends Controller
     }
 
 
-    public function diagnosa(Request $request, $id) {
+    public function diagnosa(Request $request, $id)
+    {
         // Validasi file upload
         $request->validate([
             'image' => 'required|file|mimes:jpeg,png,jpg',
@@ -354,7 +358,8 @@ class ApiGetDataalatController extends Controller
             ], 500);
         }
     }
-    private function generateDeskripsiWithGemini($predictedClass) {
+    private function generateDeskripsiWithGemini($predictedClass)
+    {
         try {
             // Gunakan Guzzle atau Http facade untuk request
             $response = Http::withHeaders([
@@ -388,14 +393,14 @@ class ApiGetDataalatController extends Controller
         }
     }
 
-    private function generatePrompt($predictedClass) {
-        if($predictedClass == 'nodisease') {
+    private function generatePrompt($predictedClass)
+    {
+        if ($predictedClass == 'nodisease') {
             return "Jelaskan kriteria daun kopi yang sehat, normal, dan bebas dari penyakit.
             Berikan informasi tentang karakteristik daun kopi yang optimal dan cara mempertahankan kondisi kesehatan tersebut.";
         } else if ($predictedClass == 'NotFound') {
             return "Buat kalimat yang menyatakan bahwa tidak ada penyakit daun kopi yang dibahas untuk hal ini.";
-        }
-        else {
+        } else {
             return "Berikan penjelasan mendalam tentang penyakit $predictedClass pada daun kopi.
             Jelaskan secara rinci:
             1. Deskripsi umum penyakit
@@ -518,13 +523,14 @@ class ApiGetDataalatController extends Controller
         ]);
     }
 
-    public function relay() {
-        $status=Alat::where('id',3)->first();
-$status=$status->status;
+    public function relay()
+    {
+        $status = Alat::where('id', 3)->first();
+        $status = $status->status;
 
-return response()->json([
-    'status' => 'success',
-    'nilai' => $status
-]);
+        return response()->json([
+            'status' => 'success',
+            'nilai' => $status
+        ]);
     }
 }
