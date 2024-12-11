@@ -23,9 +23,12 @@
             <li class="dropdown {{ Route::is('rekam-data') ? 'active' : ''}}">
                 <a href="{{ route('rekam-data') }}" class="nav-link"><i class="fas fa-file-alt"></i><span>Rekam Data</span></a>
             </li>
+            @if (Auth::user()->role == 'admin')
             <li class="dropdown {{ Route::is('karyawan') ? 'active' : ''}}">
                 <a href="{{ route('karyawan') }}" class="nav-link"><i class="fas fa-id-badge"></i><span>Data Karyawan</span></a>
             </li>
+            @endif
+
             <li class="dropdown {{ Route::is('blog') ? 'active' : '' }}">
                 <a href="{{ route('blog') }}" class="nav-link"><i class="fas fa-share-alt"></i><span>Blog</span></a>
             </li>
