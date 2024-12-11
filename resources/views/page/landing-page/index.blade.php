@@ -46,11 +46,11 @@
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <span class="fa fa-phone-alt me-2"></span>
-                    <span>+012 345 6789</span>
+                    <span>+62 85748100201</span>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
                     <span class="far fa-envelope me-2"></span>
-                    <span>info@example.com</span>
+                    <span>nursery-mbkm.researce-ai.my.id</span>
                 </div>
             </div>
             <div class="col-lg-5 px-5 text-end">
@@ -77,11 +77,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{ route('landing-page') }}" class="nav-item nav-link active">Home</a>
-                <a href="{{ route('landing-page-about') }}" class="nav-item nav-link">About</a>
-                <a href="{{ route('landing-page-service') }}" class="nav-item nav-link">Services</a>
+                <a href="{{ route('landing-page') }}" class="nav-item nav-link active">Beranda</a>
+                <a href="{{ route('landing-page-about') }}" class="nav-item nav-link">Tentang</a>
+                <a href="{{ route('landing-page-service') }}" class="nav-item nav-link">Layanan</a>
                 <a href="" class="nav-item nav-link">Blog</a>
-                <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link">Contact</a>
+                <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link">Kontak Kami</a>
             </div>
             <!-- <a href="" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -99,7 +99,7 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <h1 class="display-1 text-white mb-5 animated slideInDown">Make Your Home Like Garden</h1>
+                                    <h1 class="display-1 text-white mb-5 animated slideInDown">Buat Lingkungan Ideal untuk Kopi Berkualitas Tinggi</h1>
                                     <a href="" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
                                 </div>
                             </div>
@@ -639,7 +639,7 @@
                     <h4 class="text-white mb-4">Our Office</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>nursery-mbkm.researce-ai.my.id</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
