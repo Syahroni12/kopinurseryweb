@@ -14,7 +14,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -77,23 +77,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{ route('landing-page') }}" class="nav-item nav-link">Home</a>
-                <a href="{{ route('landing-page-about') }}" class="nav-item nav-link active">About</a>
-                <a href="{{ route('landing-page-service') }}" class="nav-item nav-link">Services</a>
-                <a href="project.html" class="nav-item nav-link">Projects</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="{{ route('landing-page') }}" class="nav-item nav-link">Beranda</a>
+                <a href="{{ route('landing-page-about') }}" class="nav-item nav-link active">Tentang</a>
+                <a href="{{ route('landing-page-service') }}" class="nav-item nav-link">Layanan</a>
+                <a href="" class="nav-item nav-link">Blog</a>
+                <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link">Kontak Kami</a>
             </div>
-            <!-- <a href="" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
@@ -120,7 +109,7 @@
         <div class="container">
             <div class="row g-5 align-items-end">
                 <div class="col-lg-3 col-md-5 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded" data-wow-delay="0.1s" src="{{ asset('assets/landing-page/img/about.jpg') }}">
+                    <img class="img-fluid rounded" style="width: 100%; height: auto;" src="{{ asset('assets/landing-page/img/biji_kopi.png') }}">
                 </div>
                 <div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
                     <h1 class="display-1 text-primary mb-0">25</h1>
