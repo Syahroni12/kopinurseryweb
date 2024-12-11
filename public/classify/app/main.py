@@ -48,7 +48,7 @@ async def predict_image(file: UploadFile = File(...)):
         # Mengembalikan hasil prediksi dalam format JSON
         return JSONResponse(content={
             "predicted_class": predicted_class,
-            "confidence": f"{confidence}%"
+            "confidence": f"{confidence:.2f}%"  # Format dua angka di belakang koma
         })
 
     except Exception as e:

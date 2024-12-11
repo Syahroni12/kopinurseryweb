@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Diagnosapenyakitdaun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PredicController extends Controller
@@ -66,6 +67,9 @@ class PredicController extends Controller
             $confidence = $data['confidence'];
             $diagnosa->diagnosa = $predictedClass;
             $diagnosa->keakuratan = $confidence;
+
+            $deskripsi = $this->generateDeskripsiWithGemini($predictedClass);
+            $diagnosa->deskripsi = $deskripsi;
             $diagnosa->id_user = auth()->user()->id;
             $diagnosa->save();
             Alert::success('Berhasil', 'Gambar berhasil diproses');
@@ -181,4 +185,61 @@ class PredicController extends Controller
 
         return redirect()->route('riwayat_predik');
     }
+
+
+    private function generateDeskripsiWithGemini($predictedClass) {
+        try {
+            // Gunakan Guzzle atau Http facade untuk request
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+            ])->post('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAu0Bk-gDla6ua4iLtDIywy0io7UJis_1U', [
+                'contents' => [
+                    'parts' => [
+                        'text' => $this->generatePrompt($predictedClass)
+                    ]
+                ],
+                'generationConfig' => [
+                    'maxOutputTokens' => 500,
+                    'temperature' => 0.7,
+                    'topP' => 1.0,
+                    'topK' => 40
+                ],
+            ]);
+
+            if ($response->successful()) {
+                $responseData = $response->json();
+                $generatedText = $responseData['candidates'][0]['content']['parts'][0]['text'] ?? 'Deskripsi tidak tersedia';
+
+                return $generatedText;
+            } else {
+                Log::error('Gemini API Error: ' . $response->body());
+                return "Informasi detail penyakit tidak dapat dihasilkan.";
+            }
+        } catch (\Exception $e) {
+            Log::error('Kesalahan saat menghasilkan deskripsi: ' . $e->getMessage());
+            return "Terjadi kesalahan saat menghasilkan deskripsi.";
+        }
+    }
+
+    private function generatePrompt($predictedClass) {
+        if($predictedClass == 'nodisease') {
+            return "Jelaskan kriteria daun kopi yang sehat, normal, dan bebas dari penyakit.
+            Berikan informasi tentang karakteristik daun kopi yang optimal dan cara mempertahankan kondisi kesehatan tersebut.";
+        } else if ($predictedClass == 'NotFound') {
+            return "Buat kalimat yang menyatakan bahwa tidak ada penyakit daun kopi yang dibahas untuk hal ini.";
+        }
+        else {
+            return "Berikan penjelasan mendalam tentang penyakit $predictedClass pada daun kopi.
+            Jelaskan secara rinci:
+            1. Deskripsi umum penyakit
+            2. Gejala yang terlihat
+            3. Penyebab utama
+            4. Cara pencegahan
+            5. Metode penanganan yang efektif
+            6. Solusi alternatif dengan obat tertentu yang bisa digunakan
+
+            Gunakan bahasa Indonesia yang jelas dan informatif untuk petani kopi.";
+        }
+    }
+
 }
