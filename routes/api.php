@@ -37,6 +37,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/update-data-pengguna-without-photo/{id}', [ApiGetDataalatController::class, 'updateDataPenggunaWithoutPhoto']);
     Route::post('/change-password/{id}', [ApiGetDataalatController::class, 'changePassword']);
     Route::get('/data-diagnosa/{params}', [ApiGetDataalatController::class, 'dataDiagnosa']);
+    Route::delete('/data-diagnosa/{id}', [ApiGetDataAlatController::class, 'deleteDataDiagnosa']);
+    Route::get('/data-diagnosa-detail/{id}', [ApiGetDataAlatController::class, 'dataDiagnosaDetail']);
 });
 Route::post('/senddata', [ApiGetDataalatController::class, 'senddata']);
 Route::post('/diagnosa/{id}', [ApiGetDataalatController::class, 'diagnosa']);

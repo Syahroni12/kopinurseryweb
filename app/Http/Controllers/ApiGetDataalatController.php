@@ -21,6 +21,52 @@ use Illuminate\Support\Facades\Validator;
 class ApiGetDataalatController extends Controller
 {
 
+    public function dataDiagnosaDetail($id){
+        try{
+            if($id){
+                $get_detail = Diagnosapenyakitdaun::where('id', $id)->first();
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $get_detail
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Data tidak ditemukan'
+                ]);
+            }
+         }catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteDataDiagnosa($id)
+    {
+        try {
+            $diagnosa = Diagnosapenyakitdaun::find($id);
+            if (!$diagnosa) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Data diagnosa tidak ditemukan'
+                ], 404);
+            }
+            $diagnosa->delete();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Data diagnosa berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
     public function index($id)
     {
         try {
@@ -51,20 +97,39 @@ class ApiGetDataalatController extends Controller
         }
     }
 
-    public function dataDiagnosa($params)
+    public function dataDiagnosa($params, $id = null)
     {
         try {
+            if ($id !== null) {
+                // Jika $id ada, ambil data berdasarkan ID
+                $data_diagnosa = Diagnosapenyakitdaun::find($id);
+
+                if (!$data_diagnosa) {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Data tidak ditemukan'
+                    ], 404);
+                }
+
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $data_diagnosa
+                ]);
+            }
             switch ($params) {
                 case 'terbaru':
                     $data_diagnosa = Diagnosapenyakitdaun::latest()->first();
                     break;
 
                 case 'sejamlalu':
-                    $data_diagnosa = Diagnosapenyakitdaun::where('created_at', '>=', Carbon::now()->subHour())->get();
+                    // Menampilkan semua data yang dibuat dalam satu jam terakhir
+                    $data_diagnosa = Diagnosapenyakitdaun::where('created_at', '>=', Carbon::now()->subHour())
+                        ->orderBy('created_at', 'desc') // Mengurutkan berdasarkan waktu dibuat terbaru
+                        ->get();
                     break;
 
                 case 'semua':
-                    $data_diagnosa = Diagnosapenyakitdaun::all();
+                    $data_diagnosa = Diagnosapenyakitdaun::get();
                     break;
 
                 case 'miner':
@@ -83,6 +148,10 @@ class ApiGetDataalatController extends Controller
                 case 'rust':
                     $data_diagnosa = Diagnosapenyakitdaun::where('diagnosa', 'rust')->get();
                     break;
+
+                    case 'recent':
+                        $data_diagnosa = Diagnosapenyakitdaun::orderBy('created_at', 'desc')->limit(10)->get();
+                        break;
 
                 default:
                     return response()->json([
@@ -266,7 +335,7 @@ class ApiGetDataalatController extends Controller
         // Toggle status: jika 1 jadi 0, jika 0 jadi 1
         $status = Alat::where('id', 3)->first();
         $setting = Otomatis::first();
-        if (($status->status == 1)&&($setting->status == 1)) {
+        if (($status->status == 1) && ($setting->status == 1)) {
             $setting->status = 0;
             $setting->save();
             $status->status = 0;
@@ -278,7 +347,7 @@ class ApiGetDataalatController extends Controller
             $status->status = 1;
             $message = 'Pompa dihidupkan';
             $status->save();
-        }elseif (($status->status == 1) && ($setting->status == 0)) {
+        } elseif (($status->status == 1) && ($setting->status == 0)) {
             $setting->status = 1;
             $setting->save();
             $status->status = 0;
@@ -290,13 +359,7 @@ class ApiGetDataalatController extends Controller
             $status->status = 1;
             $message = 'Pompa diaktifkan';
             $status->save();
-            # code...
         }
-
-
-        // Update semua alat dengan status yang baru
-        // Alat::query()->update(['status' => $newStatus]);
-
         // Pesan respon berdasarkan status terbaru
         $newStatus = $status->status;
 
