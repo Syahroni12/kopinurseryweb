@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingPageController::class, 'index'])->name('landing-page')->middleware('guest');
 Route::get('/about', [LandingPageController::class, 'about'])->name('landing-page-about')->middleware('guest');
 Route::get('/service', [LandingPageController::class, 'service'])->name('landing-page-service')->middleware('guest');
-Route::get('/blog', [LandingPageController::class, 'bloger'])->name('landing-page-blog')->middleware('guest');
 Route::get('/contact', [LandingPageController::class, 'contact'])->name('landing-page-contact')->middleware('guest');
 
 

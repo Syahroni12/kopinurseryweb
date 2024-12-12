@@ -39,37 +39,10 @@
     </div>
     <!-- Spinner End -->
 
-
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark text-light px-0 py-2">
-        <div class="row gx-0 d-none d-lg-flex">
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center me-4">
-                    <span class="fa fa-phone-alt me-2"></span>
-                    <span>+62 85748100201</span>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center">
-                    <span class="far fa-envelope me-2"></span>
-                    <span>nursery-mbkm.researce-ai.my.id</span>
-                </div>
-            </div>
-            <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center mx-n2">
-                    <span>Follow Us:</span>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="{{ asset('assets/landing-page/img/logo.png') }}" alt="Logo" class="me-3" style="width: 50px; height: 50px;">
             <h1 class="m-0">IQACS Kopi Nursery</h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -80,7 +53,6 @@
                 <a href="{{ route('landing-page') }}" class="nav-item nav-link">Beranda</a>
                 <a href="{{ route('landing-page-about') }}" class="nav-item nav-link">Tentang</a>
                 <a href="{{ route('landing-page-service') }}" class="nav-item nav-link">Layanan</a>
-                <a href="" class="nav-item nav-link">Blog</a>
                 <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link active">Kontak Kami</a>
             </div>
         </div>
@@ -126,7 +98,7 @@
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">IQACS Kopi Nursery</h4>
                     <p>IQAC System berkomitmen membantu petani kopi mengoptimalkan kondisi lingkungan greenhouse melalui teknologi cerdas. Kami berfokus pada kualitas udara dan kesehatan tanaman dengan sistem yang dapat diandalkan dan hemat energi.</p>
                 </div>

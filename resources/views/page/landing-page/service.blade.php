@@ -40,37 +40,11 @@
     <!-- Spinner End -->
 
 
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark text-light px-0 py-2">
-        <div class="row gx-0 d-none d-lg-flex">
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center me-4">
-                    <span class="fa fa-phone-alt me-2"></span>
-                    <span>+012 345 6789</span>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center">
-                    <span class="far fa-envelope me-2"></span>
-                    <span>info@example.com</span>
-                </div>
-            </div>
-            <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center mx-n2">
-                    <span>Follow Us:</span>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h1 class="m-0">Gardener</h1>
+        <a href="" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="{{ asset('assets/landing-page/img/logo.png') }}" alt="Logo" class="me-3" style="width: 50px; height: 50px;">
+            <h1 class="m-0">IQACS Kopi Nursery</h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -80,7 +54,6 @@
                 <a href="{{ route('landing-page') }}" class="nav-item nav-link">Beranda</a>
                 <a href="{{ route('landing-page-about') }}" class="nav-item nav-link">Tentang</a>
                 <a href="{{ route('landing-page-service') }}" class="nav-item nav-link active">Layanan</a>
-                <a href="" class="nav-item nav-link">Blog</a>
                 <a href="{{ route('landing-page-contact') }}" class="nav-item nav-link">Kontak Kami</a>
             </div>
         </div>
@@ -104,7 +77,6 @@
                     <p class="fs-5 fw-bold text-primary">Memudahkan </p>
                     <h1 class="display-5 mb-4">Pengelolaan greenhouse kopi</h1>
                     <p class="fs-5 fw-bold">Secara Cerdas & Efisien</p>
-                    <a class="btn btn-primary py-3 px-4" href="">Explore More</a>
                 </div>
                 <div class="col-lg-6">
                     <div class="row g-4 align-items-center">
@@ -148,7 +120,7 @@
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">IQACS Kopi Nursery</h4>
                     <p>IQAC System berkomitmen membantu petani kopi mengoptimalkan kondisi lingkungan greenhouse melalui teknologi cerdas. Kami berfokus pada kualitas udara dan kesehatan tanaman dengan sistem yang dapat diandalkan dan hemat energi.</p>
                 </div>
@@ -195,24 +167,6 @@
         </div>
     </div>
     <!-- Footer End -->
-
-
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Copyright End -->
-
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
