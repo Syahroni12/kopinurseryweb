@@ -435,22 +435,17 @@
                 </div>
                 <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="owl-carousel testimonial-carousel">
-                        <div class="testimonial-item d-flex align-items-center">
-                            <img class="img-fluid rounded me-3" style="width: 300px; height: 300px;" src="{{ asset('assets/landing-page/img/image-3.png') }}" alt="">
+                        @foreach ( $blogs as $blog )
+                         <div class="testimonial-item d-flex align-items-center">
+                            <img class="img-fluid rounded me-3" style="width: 300px; height: 300px;" src="{{ asset('thumbnail/' . $blog->image) }}" alt="">
                             <div>
-                                <p class="fs-5 mb-2">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
+                                <h4 class="mb-0">{{ $blog->title}}</h4>
+                                <p class="fs-5 mb-2">{{ $blog->content}}</p>
                                 <h4 class="mb-0">Kategori</h4>
-                                <span>Agrikultur</span>
+                                <span>{{ $blog->category}}</span>
                             </div>
-                        </div>
-                        <div class="testimonial-item d-flex align-items-center">
-                            <img class="img-fluid rounded me-3" style="width: 300px; height: 300px;" src="{{ asset('assets/landing-page/img/image-3.png') }}" alt="">
-                            <div>
-                                <p class="fs-5 mb-2">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
-                                <h4 class="mb-0">Kategori</h4>
-                                <span>Agrikultur</span>
-                            </div>
-                        </div>
+                        </div>   
+                        @endforeach
                     </div>
                 </div>
             </div>
